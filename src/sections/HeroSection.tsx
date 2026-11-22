@@ -98,27 +98,27 @@ export const HeroSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Quick Metrics / Cloud Highlights */}
+            {/* Quick Verified Highlights */}
             <div className="grid grid-cols-3 gap-3 pt-6 border-t border-zinc-800/80 max-w-lg mx-auto lg:mx-0">
               <div className="flex items-center gap-2 text-left">
                 <Cloud size={16} className="text-cyan-400 shrink-0" />
                 <div>
-                  <p className="text-xs font-semibold text-white">AWS &amp; Azure</p>
-                  <p className="text-[11px] text-zinc-500 font-mono">Cloud Native</p>
+                  <p className="text-xs font-semibold text-white">AWS Serverless</p>
+                  <p className="text-[11px] text-zinc-500 font-mono">Lambda &amp; S3</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 text-left">
                 <Server size={16} className="text-blue-400 shrink-0" />
                 <div>
-                  <p className="text-xs font-semibold text-white">K8s &amp; Docker</p>
-                  <p className="text-[11px] text-zinc-500 font-mono">Containers</p>
+                  <p className="text-xs font-semibold text-white">K3s &amp; Argo CD</p>
+                  <p className="text-[11px] text-zinc-500 font-mono">GitOps Homelab</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 text-left">
                 <ShieldCheck size={16} className="text-emerald-400 shrink-0" />
                 <div>
-                  <p className="text-xs font-semibold text-white">Terraform</p>
-                  <p className="text-[11px] text-zinc-500 font-mono">IaC Pipelines</p>
+                  <p className="text-xs font-semibold text-white">CI/CD &amp; Trivy</p>
+                  <p className="text-[11px] text-zinc-500 font-mono">Security Gates</p>
                 </div>
               </div>
             </div>

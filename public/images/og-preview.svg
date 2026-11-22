@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" fill="none">
+  <defs>
+    <linearGradient id="ogBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#08090d"/>
+      <stop offset="50%" stop-color="#0e121d"/>
+      <stop offset="100%" stop-color="#05070a"/>
+    </linearGradient>
+    <linearGradient id="ogCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="ogViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.05"/>
+    </linearGradient>
+    <pattern id="ogGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#ogBg)"/>
+  <rect width="1200" height="630" fill="url(#ogGrid)"/>
+
+  <!-- Ambient Glow -->
+  <circle cx="600" cy="100" r="350" fill="url(#ogViolet)" filter="blur(80px)"/>
+
+  <!-- Top Badge -->
+  <rect x="100" y="110" width="220" height="36" rx="18" fill="#06b6d4" fill-opacity="0.1" stroke="#06b6d4" stroke-opacity="0.3" stroke-width="1"/>
+  <circle cx="120" cy="128" r="4" fill="#38bdf8"/>
+  <text x="134" y="133" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" letter-spacing="1">DEVOPS &amp; CLOUD</text>
+
+  <!-- Name & Title -->
+  <text x="100" y="220" fill="#ffffff" font-family="'Inter', -apple-system, sans-serif" font-size="54" font-weight="900" letter-spacing="-1">Parv Chandegara</text>
+  <text x="100" y="275" fill="url(#ogCyan)" font-family="'Inter', -apple-system, sans-serif" font-size="28" font-weight="700">Aspiring DevOps &amp; Cloud Engineer</text>
+  <text x="100" y="325" fill="#94a3b8" font-family="'Inter', -apple-system, sans-serif" font-size="18" font-weight="400">Kubernetes • GitOps (Argo CD) • AWS Serverless • CI/CD Automation • Docker • Terraform</text>
+
+  <!-- Terminal Preview Box -->
+  <g transform="translate(100, 370)">
+    <rect width="1000" height="180" rx="14" fill="#0d111a" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1.5"/>
+    <rect width="1000" height="38" rx="14" fill="#131926"/>
+    <circle cx="25" cy="19" r="5" fill="#ef4444"/>
+    <circle cx="45" cy="19" r="5" fill="#f59e0b"/>
+    <circle cx="65" cy="19" r="5" fill="#10b981"/>
+    <text x="90" y="24" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="12">parv@homelab:~$ kubectl get pods -n hello-devops</text>
+
+    <!-- Content -->
+    <text x="30" y="75" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="13">NAME                                READY   STATUS    RESTARTS   AGE     IP</text>
+    <text x="30" y="105" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="13">hello-devops-74488665b9-7b2g9        1/1     Running   0          2d      10.42.1.28</text>
+    <text x="30" y="135" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="13">hello-devops-74488665b9-r9k4x        1/1     Running   0          2d      10.42.0.42</text>
+    <text x="30" y="165" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="12">✔ GitOps Sync: Synced via Argo CD (github.com/parv166/hello-devops)</text>
+  </g>
+</svg>

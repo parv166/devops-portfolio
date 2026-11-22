@@ -3,7 +3,9 @@ import { motion } from 'framer-motion';
 import { 
   Github, 
   ArrowUpRight,
-  Workflow
+  Workflow,
+  AlertCircle,
+  GitCommit
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 import { SectionHeading } from '../components/SectionHeading';
@@ -18,9 +20,9 @@ export const ProjectsSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="Featured Deployments"
-          title="Infrastructure &amp; Cloud Projects"
-          subtitle="Real-world architectural prototypes focusing on cloud-native serverless systems and telemetry stacks."
+          badge="Featured Implementations"
+          title="DevOps &amp; Cloud Projects"
+          subtitle="Real-world hands-on implementations covering K3s GitOps, AWS serverless storage, and automated container CI/CD pipelines."
         />
 
         <div className="space-y-16">
@@ -52,7 +54,7 @@ export const ProjectsSection: React.FC = () => {
                       />
                     </div>
 
-                    {/* Architecture Tags Overlay */}
+                    {/* Architecture Highlights Tags */}
                     {project.architectureHighlights && (
                       <div className="px-6 pb-6 pt-0 flex flex-wrap gap-2">
                         {project.architectureHighlights.map((tag, i) => (
@@ -85,9 +87,20 @@ export const ProjectsSection: React.FC = () => {
                       </h3>
 
                       {/* Description */}
-                      <p className="text-sm text-zinc-300 leading-relaxed mb-6">
+                      <p className="text-sm text-zinc-300 leading-relaxed mb-5">
                         {project.description}
                       </p>
+
+                      {/* Verified Workflow Strip */}
+                      {project.workflow && (
+                        <div className="mb-5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-[11px] font-mono text-zinc-400 flex items-start gap-2">
+                          <GitCommit size={14} className="text-cyan-400 shrink-0 mt-0.5" />
+                          <div>
+                            <span className="text-cyan-300 font-semibold block mb-0.5">Verified Pipeline Architecture:</span>
+                            <span className="text-zinc-400 leading-relaxed">{project.workflow}</span>
+                          </div>
+                        </div>
+                      )}
 
                       {/* Tech Stack Badges */}
                       <div className="flex flex-wrap gap-2 mb-6">
@@ -102,10 +115,10 @@ export const ProjectsSection: React.FC = () => {
                       </div>
 
                       {/* Key Features List */}
-                      <div className="mb-6 space-y-2">
+                      <div className="mb-5 space-y-2">
                         <h4 className="text-xs font-mono text-zinc-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
                           <Workflow size={14} className="text-cyan-400" />
-                          Key Architectural Features:
+                          Actual Implementation Details:
                         </h4>
                         <ul className="space-y-1.5 pl-1">
                           {project.keyFeatures.map((feature, fIdx) => (
@@ -118,10 +131,28 @@ export const ProjectsSection: React.FC = () => {
                       </div>
 
                       {/* Actual Contribution */}
-                      <div className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 text-xs text-zinc-300 mb-6">
-                        <strong className="text-cyan-300 font-mono block mb-1">My Practical Contribution:</strong>
+                      <div className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 text-xs text-zinc-300 mb-5">
+                        <strong className="text-cyan-300 font-mono block mb-1">My Personal Contribution:</strong>
                         <p className="text-zinc-400 leading-relaxed font-sans">{project.myContribution}</p>
                       </div>
+
+                      {/* Honest Limitations / Scope (if defined) */}
+                      {project.limitations && project.limitations.length > 0 && (
+                        <div className="p-3.5 rounded-xl bg-amber-950/20 border border-amber-900/40 text-xs text-zinc-300 mb-6 space-y-1.5">
+                          <h5 className="text-[11px] font-mono text-amber-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                            <AlertCircle size={13} className="text-amber-400" />
+                            Honest Architecture Scope &amp; Limitations:
+                          </h5>
+                          <ul className="space-y-1 pl-1 text-[11px] text-zinc-400">
+                            {project.limitations.map((limit, lIdx) => (
+                              <li key={lIdx} className="flex items-start gap-1.5">
+                                <span className="text-amber-500/80">•</span>
+                                <span>{limit}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
 
                     {/* Action Links */}
@@ -134,11 +165,11 @@ export const ProjectsSection: React.FC = () => {
                           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold text-zinc-200 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/80 hover:border-zinc-500 transition-colors shadow-sm"
                         >
                           <Github size={14} />
-                          <span>View Code Repository</span>
+                          <span>View GitHub Repository</span>
                         </a>
                       )}
 
-                      {project.liveUrl ? (
+                      {project.liveUrl && (
                         <a
                           href={project.liveUrl}
                           target="_blank"
@@ -148,10 +179,6 @@ export const ProjectsSection: React.FC = () => {
                           <span>Live Demo</span>
                           <ArrowUpRight size={14} />
                         </a>
-                      ) : (
-                        <span className="text-xs font-mono text-zinc-500 italic py-2">
-                          [Architecture Repository / Lab Ready]
-                        </span>
                       )}
                     </div>
                   </div>

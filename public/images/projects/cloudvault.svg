@@ -1,82 +1,113 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" fill="none">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="cvBg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0d111a"/>
       <stop offset="100%" stop-color="#07090e"/>
     </linearGradient>
-    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.8"/>
+    <linearGradient id="cvCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
     </linearGradient>
-    <linearGradient id="violetGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.1"/>
+    <linearGradient id="cvViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.05"/>
     </linearGradient>
-    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+    <pattern id="cvGrid" width="30" height="30" patternUnits="userSpaceOnUse">
       <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
     </pattern>
   </defs>
 
   <!-- Background -->
-  <rect width="800" height="450" fill="url(#bgGrad)"/>
-  <rect width="800" height="450" fill="url(#grid)"/>
+  <rect width="800" height="450" fill="url(#cvBg)"/>
+  <rect width="800" height="450" fill="url(#cvGrid)"/>
+  <circle cx="400" cy="50" r="220" fill="url(#cvViolet)" filter="blur(60px)"/>
 
-  <!-- Top Ambient Glow -->
-  <circle cx="400" cy="50" r="220" fill="url(#violetGlow)" filter="blur(60px)"/>
+  <!-- Architecture Panel Box -->
+  <rect x="40" y="30" width="720" height="390" rx="14" fill="#0f1422" fill-opacity="0.7" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
 
-  <!-- Architecture Header Box -->
-  <rect x="50" y="40" width="700" height="370" rx="14" fill="#0f1422" fill-opacity="0.6" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+  <!-- Top Bar -->
+  <rect x="40" y="30" width="720" height="40" rx="14" fill="#131929" fill-opacity="0.9"/>
+  <circle cx="63" cy="50" r="5" fill="#ef4444" fill-opacity="0.8"/>
+  <circle cx="81" cy="50" r="5" fill="#f59e0b" fill-opacity="0.8"/>
+  <circle cx="99" cy="50" r="5" fill="#10b981" fill-opacity="0.8"/>
+  <text x="125" y="54" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="12">parv166/CloudVault-AWS-Serverless — Architecture Blueprint</text>
+  <rect x="655" y="41" width="85" height="18" rx="4" fill="#06b6d4" fill-opacity="0.15"/>
+  <text x="668" y="54" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="10">Terraform</text>
 
-  <!-- Top Bar of Architecture Panel -->
-  <rect x="50" y="40" width="700" height="42" rx="14" fill="#131929" fill-opacity="0.8"/>
-  <circle cx="75" cy="61" r="5" fill="#ef4444" fill-opacity="0.8"/>
-  <circle cx="95" cy="61" r="5" fill="#f59e0b" fill-opacity="0.8"/>
-  <circle cx="115" cy="61" r="5" fill="#10b981" fill-opacity="0.8"/>
-  <text x="145" y="65" fill="#94a3b8" font-family="monospace" font-size="12" font-weight="500">architecture/cloudvault-aws-serverless.tf</text>
-  <rect x="660" y="52" width="70" height="18" rx="4" fill="#1e293b"/>
-  <text x="673" y="65" fill="#38bdf8" font-family="monospace" font-size="10">AWS-v2</text>
+  <!-- Row 1: Frontend & Cognito Auth -->
+  <g transform="translate(65, 95)">
+    <!-- Frontend -->
+    <rect width="180" height="80" rx="8" fill="#141a2c" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="14" y="24" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">FRONTEND CLIENT</text>
+    <text x="14" y="44" fill="#f1f5f9" font-family="sans-serif" font-size="13" font-weight="600">React + Vite</text>
+    <text x="14" y="62" fill="#94a3b8" font-family="sans-serif" font-size="11">CloudFront + S3 Hosting</text>
 
-  <!-- Node 1: API Gateway / Client Ingestion -->
-  <g transform="translate(90, 140)">
-    <rect width="160" height="90" rx="10" fill="#151b2e" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="20" y="32" fill="#38bdf8" font-family="monospace" font-size="10" font-weight="bold">ENDPOINT</text>
-    <text x="20" y="54" fill="#f1f5f9" font-family="sans-serif" font-size="14" font-weight="600">API Gateway</text>
-    <text x="20" y="72" fill="#64748b" font-family="sans-serif" font-size="11">JWT Auth &amp; Rate Limit</text>
+    <!-- Arrow to Cognito -->
+    <path d="M 180 40 L 235 40" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <polygon points="235,37 241,40 235,43" fill="#a855f7"/>
+
+    <!-- Cognito -->
+    <g transform="translate(245, 0)">
+      <rect width="190" height="80" rx="8" fill="#141a2c" stroke="#a855f7" stroke-width="1.2"/>
+      <text x="14" y="24" fill="#a855f7" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">IDENTITY &amp; AUTH</text>
+      <text x="14" y="44" fill="#f1f5f9" font-family="sans-serif" font-size="13" font-weight="600">Amazon Cognito</text>
+      <text x="14" y="62" fill="#94a3b8" font-family="sans-serif" font-size="11">JWT Token &amp; User Pool</text>
+    </g>
+
+    <!-- Arrow to API Gateway -->
+    <path d="M 435 40 L 490 40" stroke="#f59e0b" stroke-width="1.5"/>
+    <polygon points="490,37 496,40 490,43" fill="#f59e0b"/>
+
+    <!-- API Gateway -->
+    <g transform="translate(500, 0)">
+      <rect width="170" height="80" rx="8" fill="#141a2c" stroke="#f59e0b" stroke-width="1.2"/>
+      <text x="14" y="24" fill="#f59e0b" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">HTTP API GATEWAY</text>
+      <text x="14" y="44" fill="#f1f5f9" font-family="sans-serif" font-size="13" font-weight="600">API Gateway</text>
+      <text x="14" y="62" fill="#94a3b8" font-family="sans-serif" font-size="11">JWT Authorizer Routes</text>
+    </g>
   </g>
 
-  <!-- Connect 1 -> 2 -->
-  <path d="M 250 185 L 320 185" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 4"/>
-  <polygon points="320,181 328,185 320,189" fill="#38bdf8"/>
+  <!-- Connect API Gateway down to Lambda -->
+  <path d="M 650 175 L 650 215 L 430 215" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <polygon points="430,212 424,215 430,218" fill="#f59e0b"/>
 
-  <!-- Node 2: AWS Lambda Execution -->
-  <g transform="translate(320, 140)">
-    <rect width="160" height="90" rx="10" fill="#151b2e" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="20" y="32" fill="#f59e0b" font-family="monospace" font-size="10" font-weight="bold">SERVERLESS</text>
-    <text x="20" y="54" fill="#f1f5f9" font-family="sans-serif" font-size="14" font-weight="600">AWS Lambda</text>
-    <text x="20" y="72" fill="#64748b" font-family="sans-serif" font-size="11">Pre-signed S3 Gen</text>
+  <!-- Row 2: Serverless Compute & Storage -->
+  <g transform="translate(65, 230)">
+    <!-- Lambda -->
+    <rect width="210" height="85" rx="8" fill="#141a2c" stroke="#f97316" stroke-width="1.2"/>
+    <text x="14" y="24" fill="#f97316" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">SERVERLESS COMPUTE</text>
+    <text x="14" y="44" fill="#f1f5f9" font-family="sans-serif" font-size="13" font-weight="600">AWS Lambda (Python)</text>
+    <text x="14" y="62" fill="#94a3b8" font-family="sans-serif" font-size="11">Per-User File Ownership Checks</text>
+
+    <!-- Arrow from Lambda to S3 -->
+    <path d="M 210 30 L 260 30" stroke="#10b981" stroke-width="1.5"/>
+    <polygon points="260,27 266,30 260,33" fill="#10b981"/>
+
+    <!-- Private S3 -->
+    <g transform="translate(270, 0)">
+      <rect width="180" height="85" rx="8" fill="#141a2c" stroke="#10b981" stroke-width="1.2"/>
+      <text x="14" y="24" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">OBJECT STORAGE</text>
+      <text x="14" y="44" fill="#f1f5f9" font-family="sans-serif" font-size="13" font-weight="600">Amazon S3</text>
+      <text x="14" y="62" fill="#94a3b8" font-family="sans-serif" font-size="11">Private Bucket (No Public)</text>
+    </g>
+
+    <!-- Arrow from Lambda to DynamoDB -->
+    <path d="M 210 60 L 475 60 L 475 30 L 490 30" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <polygon points="490,27 496,30 490,33" fill="#38bdf8"/>
+
+    <!-- DynamoDB -->
+    <g transform="translate(500, 0)">
+      <rect width="170" height="85" rx="8" fill="#141a2c" stroke="#38bdf8" stroke-width="1.2"/>
+      <text x="14" y="24" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">METADATA DATABASE</text>
+      <text x="14" y="44" fill="#f1f5f9" font-family="sans-serif" font-size="13" font-weight="600">DynamoDB</text>
+      <text x="14" y="62" fill="#94a3b8" font-family="sans-serif" font-size="11">File Metadata &amp; Size</text>
+    </g>
   </g>
 
-  <!-- Connect 2 -> 3 -->
-  <path d="M 480 185 L 550 185" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 4"/>
-  <polygon points="550,181 558,185 550,189" fill="#f59e0b"/>
-
-  <!-- Node 3: S3 Storage & KMS -->
-  <g transform="translate(550, 140)">
-    <rect width="160" height="90" rx="10" fill="#151b2e" stroke="#10b981" stroke-width="1.5"/>
-    <text x="20" y="32" fill="#10b981" font-family="monospace" font-size="10" font-weight="bold">STORAGE</text>
-    <text x="20" y="54" fill="#f1f5f9" font-family="sans-serif" font-size="14" font-weight="600">Amazon S3</text>
-    <text x="20" y="72" fill="#64748b" font-family="sans-serif" font-size="11">KMS Encrypted Vault</text>
+  <!-- Bottom: Terraform State & Security footer -->
+  <g transform="translate(65, 335)">
+    <rect width="670" height="60" rx="8" fill="#111624" stroke="rgba(255,255,255,0.08)"/>
+    <text x="20" y="26" fill="#818cf8" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">&gt; Infrastructure as Code: Terraform modules for Cognito, API Gateway, Lambda, S3, &amp; DynamoDB</text>
+    <text x="20" y="46" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="11">Security: JWT Bearer Token validation, scoped IAM execution policies, and zero public S3 bucket access</text>
   </g>
-
-  <!-- Bottom Node: CloudWatch / Terraform IaC Bar -->
-  <g transform="translate(90, 275)">
-    <rect width="620" height="95" rx="10" fill="#111624" stroke="rgba(255,255,255,0.08)"/>
-    <text x="25" y="35" fill="#818cf8" font-family="monospace" font-size="12" font-weight="600">&gt; terraform apply -auto-approve</text>
-    <text x="25" y="60" fill="#94a3b8" font-family="monospace" font-size="11">Apply complete! Resources: 14 added, 0 changed, 0 destroyed.</text>
-    <rect x="25" y="72" width="570" height="6" rx="3" fill="#1e293b"/>
-    <rect x="25" y="72" width="480" height="6" rx="3" fill="url(#cyanGlow)"/>
-  </g>
-
-  <!-- Connect from Lambda to Terraform / Telemetry -->
-  <path d="M 400 230 L 400 275" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="3 3"/>
 </svg>

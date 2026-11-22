@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="hdBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19"/>
+      <stop offset="100%" stop-color="#06080e"/>
+    </linearGradient>
+    <linearGradient id="hdGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="hdViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.05"/>
+    </linearGradient>
+    <pattern id="hdGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="url(#hdBg)"/>
+  <rect width="800" height="480" fill="url(#hdGrid)"/>
+
+  <!-- Top Ambient Glow -->
+  <circle cx="400" cy="40" r="240" fill="url(#hdViolet)" filter="blur(70px)"/>
+
+  <!-- Main Container Panel -->
+  <rect x="35" y="30" width="730" height="420" rx="14" fill="#0f1422" fill-opacity="0.75" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+
+  <!-- Title Bar -->
+  <rect x="35" y="30" width="730" height="40" rx="14" fill="#131929" fill-opacity="0.9"/>
+  <circle cx="58" cy="50" r="5" fill="#ef4444" fill-opacity="0.8"/>
+  <circle cx="76" cy="50" r="5" fill="#f59e0b" fill-opacity="0.8"/>
+  <circle cx="94" cy="50" r="5" fill="#10b981" fill-opacity="0.8"/>
+  <text x="120" y="54" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="500">parv166/hello-devops — CI/CD &amp; GitOps Architecture Workflow</text>
+  <rect x="650" y="41" width="95" height="18" rx="4" fill="#06b6d4" fill-opacity="0.15"/>
+  <text x="662" y="54" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="10">K3s Homelab</text>
+
+  <!-- SECTION 1: CI Pipeline (Top row) -->
+  <g transform="translate(60, 90)">
+    <!-- Stage 1: Developer Push -->
+    <rect width="115" height="75" rx="8" fill="#151b2e" stroke="#60a5fa" stroke-width="1.2"/>
+    <text x="12" y="24" fill="#60a5fa" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">GIT REPO</text>
+    <text x="12" y="44" fill="#f1f5f9" font-family="sans-serif" font-size="12" font-weight="600">git push</text>
+    <text x="12" y="60" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="10">main branch</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <path d="M 115 37 L 140 37" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <polygon points="140,34 146,37 140,40" fill="#60a5fa"/>
+
+    <!-- Stage 2: GitHub Actions CI -->
+    <g transform="translate(148, 0)">
+      <rect width="180" height="75" rx="8" fill="#151b2e" stroke="#38bdf8" stroke-width="1.2"/>
+      <text x="12" y="22" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">GITHUB ACTIONS</text>
+      <text x="12" y="39" fill="#f1f5f9" font-family="sans-serif" font-size="11" font-weight="600">• Helm Template Lint</text>
+      <text x="12" y="53" fill="#f1f5f9" font-family="sans-serif" font-size="11" font-weight="600">• Docker Build &amp; Health</text>
+      <text x="12" y="67" fill="#f1f5f9" font-family="sans-serif" font-size="11" font-weight="600">• Trivy CRITICAL Gate</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <path d="M 330 37 L 355 37" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <polygon points="355,34 361,37 355,40" fill="#38bdf8"/>
+
+    <!-- Stage 3: GHCR Registry -->
+    <g transform="translate(363, 0)">
+      <rect width="135" height="75" rx="8" fill="#151b2e" stroke="#a855f7" stroke-width="1.2"/>
+      <text x="12" y="24" fill="#a855f7" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">CONTAINER REG</text>
+      <text x="12" y="44" fill="#f1f5f9" font-family="sans-serif" font-size="12" font-weight="600">GHCR</text>
+      <text x="12" y="60" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="10">:sha &amp; :latest</text>
+    </g>
+
+    <!-- Arrow 3 -> 4 -->
+    <path d="M 500 37 L 525 37" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <polygon points="525,34 531,37 525,40" fill="#a855f7"/>
+
+    <!-- Stage 4: Update Helm Values -->
+    <g transform="translate(533, 0)">
+      <rect width="145" height="75" rx="8" fill="#151b2e" stroke="#10b981" stroke-width="1.2"/>
+      <text x="12" y="24" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">GIT COMMIT</text>
+      <text x="12" y="44" fill="#f1f5f9" font-family="sans-serif" font-size="12" font-weight="600">Update Helm SHA</text>
+      <text x="12" y="60" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="10">values.yaml</text>
+    </g>
+  </g>
+
+  <!-- Connect Stage 4 down to Argo CD -->
+  <path d="M 665 165 L 665 200 L 400 200" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <polygon points="400,197 394,200 400,203" fill="#10b981"/>
+
+  <!-- SECTION 2: GitOps Engine (Middle node) -->
+  <g transform="translate(240, 185)">
+    <rect width="320" height="60" rx="8" fill="#181e30" stroke="#f97316" stroke-width="1.4"/>
+    <text x="16" y="24" fill="#f97316" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">GITOPS CONTROLLER — ARGO CD</text>
+    <text x="16" y="44" fill="#f1f5f9" font-family="sans-serif" font-size="12" font-weight="500">Auto-detects Git change → Reconciles state into K3s cluster</text>
+  </g>
+
+  <!-- Connect Argo CD to K3s cluster -->
+  <path d="M 400 245 L 400 270" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="397,270 400,276 403,270" fill="#f97316"/>
+
+  <!-- SECTION 3: K3s Homelab Cluster (Bottom area) -->
+  <g transform="translate(60, 275)">
+    <!-- Main K3s Border Box -->
+    <rect width="680" height="155" rx="10" fill="#0d121f" stroke="rgba(255,255,255,0.1)" stroke-width="1.2"/>
+    <rect width="680" height="26" rx="10" fill="#131929"/>
+    <text x="16" y="18" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">K3S TWO-NODE HOMELAB CLUSTER</text>
+    <text x="530" y="18" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="10">NodePort: 30080</text>
+
+    <!-- Node 1: Master Node -->
+    <g transform="translate(20, 40)">
+      <rect width="305" height="100" rx="8" fill="#131929" stroke="#326CE5" stroke-width="1.2"/>
+      <text x="14" y="24" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">Master Node (Control Plane)</text>
+      <text x="14" y="44" fill="#94a3b8" font-family="sans-serif" font-size="11">Traefik Ingress: <tspan fill="#38bdf8">hello.local</tspan></text>
+      <rect x="14" y="55" width="275" height="32" rx="5" fill="#1a2238" stroke="rgba(255,255,255,0.06)"/>
+      <circle cx="28" cy="71" r="4" fill="#10b981"/>
+      <text x="38" y="75" fill="#f1f5f9" font-family="'JetBrains Mono', monospace" font-size="10">hello-devops-pod-1 (1/1 Running)</text>
+    </g>
+
+    <!-- Node 2: Worker Node -->
+    <g transform="translate(355, 40)">
+      <rect width="305" height="100" rx="8" fill="#131929" stroke="#8b5cf6" stroke-width="1.2"/>
+      <text x="14" y="24" fill="#c084fc" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">Worker Node</text>
+      <text x="14" y="44" fill="#94a3b8" font-family="sans-serif" font-size="11">Workload Execution &amp; High Availability</text>
+      <rect x="14" y="55" width="275" height="32" rx="5" fill="#1a2238" stroke="rgba(255,255,255,0.06)"/>
+      <circle cx="28" cy="71" r="4" fill="#10b981"/>
+      <text x="38" y="75" fill="#f1f5f9" font-family="'JetBrains Mono', monospace" font-size="10">hello-devops-pod-2 (1/1 Running)</text>
+    </g>
+  </g>
+</svg>

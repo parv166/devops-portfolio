@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Copy, Check } from 'lucide-react';
+import { Terminal, Copy, Check, Info } from 'lucide-react';
 
 interface TerminalTab {
   id: string;
   name: string;
   command: string;
+  description: string;
   output: React.ReactNode;
 }
 
@@ -16,101 +17,101 @@ export const TerminalHero: React.FC = () => {
   const tabs: TerminalTab[] = [
     {
       id: 'k8s',
-      name: 'k8s-cluster.sh',
-      command: 'kubectl get pods -n production -o wide',
+      name: 'k8s-workload',
+      command: 'kubectl get pods -n hello-devops -o wide',
+      description: 'Representative snapshot of the 2-replica deployment across the 2-node K3s homelab.',
       output: (
         <div className="space-y-1.5 font-mono text-xs sm:text-[13px] leading-relaxed">
           <div className="text-zinc-500 font-semibold grid grid-cols-12 gap-1 pb-1 border-b border-zinc-800">
             <span className="col-span-4">NAME</span>
             <span className="col-span-2">READY</span>
-            <span className="col-span-3">STATUS</span>
-            <span className="col-span-3 text-right">RESTARTS</span>
+            <span className="col-span-2">STATUS</span>
+            <span className="col-span-2">IP</span>
+            <span className="col-span-2 text-right">NODE</span>
           </div>
           <div className="grid grid-cols-12 gap-1 text-zinc-300">
-            <span className="col-span-4 text-cyan-300">cloudvault-api-7b89f-k2l9</span>
-            <span className="col-span-2 text-zinc-400">3/3</span>
-            <span className="col-span-3 text-emerald-400 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              Running
-            </span>
-            <span className="col-span-3 text-right text-zinc-400">0 (48d)</span>
-          </div>
-          <div className="grid grid-cols-12 gap-1 text-zinc-300">
-            <span className="col-span-4 text-cyan-300">pulsecheck-mon-4df98-m4p1</span>
-            <span className="col-span-2 text-zinc-400">2/2</span>
-            <span className="col-span-3 text-emerald-400 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              Running
-            </span>
-            <span className="col-span-3 text-right text-zinc-400">0 (14d)</span>
-          </div>
-          <div className="grid grid-cols-12 gap-1 text-zinc-300">
-            <span className="col-span-4 text-cyan-300">ingress-nginx-controller-9x</span>
+            <span className="col-span-4 text-cyan-300 truncate">hello-devops-74488-7b2g9</span>
             <span className="col-span-2 text-zinc-400">1/1</span>
-            <span className="col-span-3 text-emerald-400 flex items-center gap-1.5">
+            <span className="col-span-2 text-emerald-400 flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
               Running
             </span>
-            <span className="col-span-3 text-right text-zinc-400">0 (92d)</span>
+            <span className="col-span-2 text-zinc-400">10.42.1.28</span>
+            <span className="col-span-2 text-right text-zinc-400">k3s-worker</span>
           </div>
-          <div className="pt-2 text-zinc-500 flex items-center gap-2">
-            <span className="text-emerald-400">✔</span>
-            <span>Cluster Health: 100% healthy (12 nodes, 0 evictions)</span>
+          <div className="grid grid-cols-12 gap-1 text-zinc-300">
+            <span className="col-span-4 text-cyan-300 truncate">hello-devops-74488-r9k4x</span>
+            <span className="col-span-2 text-zinc-400">1/1</span>
+            <span className="col-span-2 text-emerald-400 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Running
+            </span>
+            <span className="col-span-2 text-zinc-400">10.42.0.42</span>
+            <span className="col-span-2 text-right text-zinc-400">k3s-master</span>
+          </div>
+
+          <div className="pt-2 text-zinc-400 border-t border-zinc-800/60 text-[11px] space-y-0.5">
+            <p className="text-zinc-500">Service: NodePort 30080 | Traefik Ingress: http://hello.local</p>
+            <p className="text-zinc-500">Deployment Config: 2 fixed replicas (HPA disabled in checked-in Helm values)</p>
           </div>
         </div>
       ),
     },
     {
-      id: 'tf',
-      name: 'terraform-plan.tf',
-      command: 'terraform plan -out=tfplan.binary',
+      id: 'gitops',
+      name: 'gitops-argocd',
+      command: 'kubectl get application hello-devops -n argocd',
+      description: 'Argo CD reconciling the Git desired state from parv166/hello-devops into K3s.',
       output: (
-        <div className="space-y-1 font-mono text-xs sm:text-[13px] leading-relaxed text-zinc-300">
-          <p className="text-zinc-500">Refreshing Terraform state in AWS eu-west-1...</p>
-          <p className="text-zinc-400">aws_s3_bucket.cloudvault: Refreshing state... [id=cloudvault-prod-assets]</p>
-          <p className="text-zinc-400">aws_lambda_function.ingest: Refreshing state... [id=ingest-handler]</p>
-          <div className="my-2 p-2 rounded bg-cyan-950/20 border border-cyan-800/40 text-cyan-300">
-            <span>+ resource &quot;aws_cloudwatch_metric_alarm&quot; &quot;p99_latency&quot; &#123;</span>
-            <div className="pl-4 text-zinc-300 text-xs">
-              <p>+ metric_name = &quot;TargetResponseTime&quot;</p>
-              <p>+ threshold   = 250 /* ms */</p>
-              <p>+ actions_enabled = true</p>
+        <div className="space-y-2 font-mono text-xs sm:text-[13px] leading-relaxed">
+          <div className="text-zinc-500 font-semibold grid grid-cols-12 gap-1 pb-1 border-b border-zinc-800">
+            <span className="col-span-3">NAME</span>
+            <span className="col-span-3">SYNC STATUS</span>
+            <span className="col-span-3">HEALTH</span>
+            <span className="col-span-3 text-right">REVISION</span>
+          </div>
+          <div className="grid grid-cols-12 gap-1 text-zinc-300">
+            <span className="col-span-3 text-cyan-300">hello-devops</span>
+            <span className="col-span-3 text-emerald-400 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Synced
+            </span>
+            <span className="col-span-3 text-emerald-400">Healthy</span>
+            <span className="col-span-3 text-right text-zinc-400 font-mono">main (3a9f02c)</span>
+          </div>
+
+          <div className="p-2 rounded bg-zinc-900/80 border border-zinc-800 text-zinc-300 text-[11px] space-y-1">
+            <div className="flex items-center justify-between text-zinc-400">
+              <span>Repo URL: https://github.com/parv166/hello-devops</span>
+              <span className="text-cyan-400">Path: helm/</span>
             </div>
-            <span>&#125;</span>
+            <p className="text-zinc-400">GitOps Flow: Argo CD detects Helm values.yaml image SHA update → triggers atomic rolling sync</p>
           </div>
-          <p className="text-emerald-400 font-medium">Plan: 1 to add, 0 to change, 0 to destroy.</p>
         </div>
       ),
     },
     {
-      id: 'pipeline',
-      name: 'ci-cd.yaml',
-      command: 'gh workflow run deploy-production.yml',
+      id: 'cicd',
+      name: 'github-actions',
+      command: 'gh run list --repo parv166/hello-devops --limit 2',
+      description: 'Recent GitHub Actions pipeline executions validating Helm, Docker, and Trivy security gate.',
       output: (
-        <div className="space-y-1.5 font-mono text-xs sm:text-[13px] leading-relaxed">
-          <div className="flex items-center gap-2 text-zinc-400">
-            <span className="text-cyan-400 font-bold">1.</span>
-            <span>Lint &amp; Static Security Scan (Trivy / Hadolint)</span>
-            <span className="ml-auto text-emerald-400 font-bold">PASSED [12s]</span>
-          </div>
-          <div className="flex items-center gap-2 text-zinc-400">
-            <span className="text-cyan-400 font-bold">2.</span>
-            <span>Docker Multi-Stage Build &amp; Image Signing</span>
-            <span className="ml-auto text-emerald-400 font-bold">PASSED [44s]</span>
-          </div>
-          <div className="flex items-center gap-2 text-zinc-400">
-            <span className="text-cyan-400 font-bold">3.</span>
-            <span>Terraform Spec Verification</span>
-            <span className="ml-auto text-emerald-400 font-bold">PASSED [8s]</span>
-          </div>
-          <div className="flex items-center gap-2 text-zinc-400">
-            <span className="text-cyan-400 font-bold">4.</span>
-            <span>Canary Rollout to K8s Namespace</span>
-            <span className="ml-auto text-emerald-400 font-bold">DEPLOYED [21s]</span>
-          </div>
-          <div className="pt-2 text-emerald-400 font-semibold flex items-center gap-2 border-t border-zinc-800/80">
-            <span>✔</span>
-            <span>Workflow completed successfully with 0 warnings.</span>
+        <div className="space-y-2 font-mono text-xs sm:text-[13px] leading-relaxed">
+          <div className="space-y-1">
+            <div className="flex items-center justify-between text-zinc-300">
+              <span className="text-emerald-400 flex items-center gap-1.5">
+                <span>✔</span>
+                <span className="text-zinc-200">CI/CD Pipeline &amp; GHCR Publish</span>
+              </span>
+              <span className="text-zinc-500 text-[11px]">commit 3a9f02c</span>
+            </div>
+            <div className="pl-4 text-[11px] text-zinc-400 space-y-0.5">
+              <p>• Step 1: Helm template validation &amp; lint (helm lint helm/)</p>
+              <p>• Step 2: Docker build with container healthcheck (/health)</p>
+              <p>• Step 3: Trivy vulnerability scan (<span className="text-amber-400">severity: CRITICAL</span>, ignore-unfixed: true)</p>
+              <p>• Step 4: Publish to ghcr.io/parv166/hello-devops (SHA + latest)</p>
+              <p>• Step 5: Auto-commit new image SHA to helm/values.yaml</p>
+            </div>
           </div>
         </div>
       ),
@@ -137,7 +138,7 @@ export const TerminalHero: React.FC = () => {
           </div>
           <Terminal size={14} className="text-zinc-500" />
           <span className="text-xs font-mono text-zinc-400 hidden sm:inline">
-            cloud-control-plane
+            k3s-homelab-cli
           </span>
         </div>
 
@@ -174,7 +175,7 @@ export const TerminalHero: React.FC = () => {
       <div className="p-4 sm:p-5 bg-[#090b12]/95 min-h-[220px]">
         {/* Command Line */}
         <div className="flex items-center gap-2 font-mono text-xs sm:text-sm mb-3.5 pb-2.5 border-b border-zinc-800/50">
-          <span className="text-emerald-400 font-semibold">devops@cloud:~$</span>
+          <span className="text-emerald-400 font-semibold">parv@homelab:~$</span>
           <span className="text-zinc-200 font-medium">{currentTab.command}</span>
           <span className="w-2 h-4 bg-cyan-400 animate-pulse ml-0.5 inline-block" />
         </div>
@@ -193,18 +194,16 @@ export const TerminalHero: React.FC = () => {
         </AnimatePresence>
       </div>
 
-      {/* Terminal Footer Status Bar */}
-      <div className="bg-[#0b0e17] px-4 py-2 border-t border-zinc-800/60 flex items-center justify-between text-[11px] font-mono text-zinc-500">
-        <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            status: synchronized
-          </span>
-          <span className="hidden sm:inline">env: production</span>
+      {/* Terminal Footer Status Bar with Mandatory Disclaimer */}
+      <div className="bg-[#0b0e17] px-4 py-2 border-t border-zinc-800/60 flex flex-col sm:flex-row items-start sm:items-center justify-between text-[11px] font-mono text-zinc-500 gap-1">
+        <div className="flex items-center gap-1.5 text-zinc-400">
+          <Info size={12} className="text-cyan-400 shrink-0" />
+          <span>Illustrative output based on my homelab configuration — not live cluster telemetry.</span>
         </div>
-        <div className="flex items-center gap-3 text-zinc-400">
-          <span>AWS / K8s / IaC</span>
-          <span className="text-cyan-400">UTF-8</span>
+        <div className="flex items-center gap-2 text-zinc-500 shrink-0">
+          <span>K3s v1.31</span>
+          <span>•</span>
+          <span className="text-cyan-400">Argo CD</span>
         </div>
       </div>
     </div>

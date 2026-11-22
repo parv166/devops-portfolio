@@ -1,7 +1,8 @@
 import React from 'react';
 import { 
   Terminal, 
-  Cpu 
+  Cpu,
+  Shield
 } from 'lucide-react';
 
 interface TechIconProps {
@@ -60,6 +61,28 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-5 h-5",
         </svg>
       );
 
+    case 'k3s':
+      return (
+        <div className={`${className} bg-amber-500/20 text-amber-300 font-bold text-[10px] flex items-center justify-center rounded border border-amber-500/40 font-mono`} style={{ width: size, height: size }}>
+          K3s
+        </div>
+      );
+
+    case 'helm':
+      return (
+        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="#0F1689" strokeWidth="2"/>
+          <path d="M12 6L15 12L12 18L9 12Z" stroke="#0F1689" strokeWidth="1.5" fill="#326CE5"/>
+        </svg>
+      );
+
+    case 'traefik':
+      return (
+        <div className={`${className} bg-cyan-500/20 text-cyan-300 font-bold text-[10px] flex items-center justify-center rounded border border-cyan-500/40 font-mono`} style={{ width: size, height: size }}>
+          Trf
+        </div>
+      );
+
     case 'terraform':
       return (
         <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -84,6 +107,16 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-5 h-5",
         </svg>
       );
 
+    case 'argocd':
+      return (
+        <div className={`${className} bg-orange-500/20 text-orange-400 font-bold text-[10px] flex items-center justify-center rounded border border-orange-500/40 font-mono`} style={{ width: size, height: size }}>
+          Argo
+        </div>
+      );
+
+    case 'trivy':
+      return <Shield className={`${className} text-rose-400`} size={size} />;
+
     case 'linux':
       return (
         <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -101,13 +134,6 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-5 h-5",
           <circle cx="12" cy="4" r="2" fill="#E95420"/>
           <circle cx="5" cy="16" r="2" fill="#E95420"/>
           <circle cx="19" cy="16" r="2" fill="#E95420"/>
-        </svg>
-      );
-
-    case 'windows':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="#0078D4">
-          <path d="M3 4.2L10.5 3.2V11H3V4.2ZM3 13H10.5V20.8L3 19.8V13ZM11.8 3.1L21 1.8V11H11.8V3.1ZM11.8 13H21V22.2L11.8 20.9V13Z" />
         </svg>
       );
 
@@ -138,22 +164,6 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-5 h-5",
         <div className={`${className} bg-blue-600 text-white font-bold text-[10px] flex items-center justify-center rounded font-mono`} style={{ width: size, height: size }}>
           TS
         </div>
-      );
-
-    case 'grafana':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="#F46800" strokeWidth="1.8"/>
-          <path d="M7 14L10 10L13 13L17 8" stroke="#F46800" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      );
-
-    case 'prometheus':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
-          <path d="M12 2C8 6 6 9 6 13C6 16.3 8.7 19 12 19C15.3 19 18 16.3 18 13C18 9 16 6 12 2Z" stroke="#E6522C" strokeWidth="1.8"/>
-          <path d="M12 9V15M9 13H15" stroke="#E6522C" strokeWidth="1.5" strokeLinecap="round"/>
-        </svg>
       );
 
     case 'git':

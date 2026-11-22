@@ -36,7 +36,7 @@ export const AboutSection: React.FC = () => {
         <SectionHeading
           badge="Engineering Foundation"
           title="About Me"
-          subtitle="My journey, core architectural mindset, and goals in Cloud & DevOps engineering."
+          subtitle="My journey, core operational mindset, and goals in Cloud & DevOps engineering."
         />
 
         <motion.div
@@ -98,7 +98,7 @@ export const AboutSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white">Professional Goals</h3>
-                  <p className="text-xs text-zinc-500 font-mono">Future Roadmap</p>
+                  <p className="text-xs text-zinc-500 font-mono">Development Roadmap</p>
                 </div>
               </div>
 
@@ -109,7 +109,7 @@ export const AboutSection: React.FC = () => {
 
             <div className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 text-xs font-mono text-zinc-400 flex items-center gap-2">
               <Sparkles size={14} className="text-cyan-400 shrink-0" />
-              <span>&ldquo;Automate the mundane, engineer for resilience.&rdquo;</span>
+              <span>&ldquo;Understand systems from the inside out — build, test, automate.&rdquo;</span>
             </div>
           </motion.div>
 

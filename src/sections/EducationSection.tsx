@@ -38,9 +38,11 @@ export const EducationSection: React.FC = () => {
                     <h3 className="text-xl font-bold text-white mb-1">
                       {item.degree}
                     </h3>
-                    <p className="text-sm font-medium text-cyan-300">
-                      {item.institution}
-                    </p>
+                    {item.institution && (
+                      <p className="text-sm font-medium text-cyan-300">
+                        {item.institution}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -60,7 +62,7 @@ export const EducationSection: React.FC = () => {
 
               {/* Coursework Badges */}
               {item.relevantCoursework && item.relevantCoursework.length > 0 && (
-                <div className="mb-6 pt-4 border-t border-zinc-800/80">
+                <div className="mb-2 pt-4 border-t border-zinc-800/80">
                   <h4 className="text-xs font-mono text-zinc-400 font-bold uppercase tracking-wider mb-3 flex items-center gap-1.5">
                     <BookOpen size={14} className="text-cyan-400" />
                     Relevant Core Coursework:
@@ -78,12 +80,12 @@ export const EducationSection: React.FC = () => {
                 </div>
               )}
 
-              {/* Achievements / Extracurriculars */}
+              {/* Achievements / Extracurriculars (only if verified items exist) */}
               {item.achievements && item.achievements.length > 0 && (
                 <div className="pt-4 border-t border-zinc-800/80">
                   <h4 className="text-xs font-mono text-zinc-400 font-bold uppercase tracking-wider mb-3 flex items-center gap-1.5">
                     <Award size={14} className="text-violet-400" />
-                    Campus Highlights &amp; Activities:
+                    Campus Highlights:
                   </h4>
                   <ul className="space-y-1.5 pl-1">
                     {item.achievements.map((ach, aIdx) => (

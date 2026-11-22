@@ -25,14 +25,23 @@ export interface AboutInfo {
 
 export interface SocialLinks {
   github: string;
-  linkedin: string;
+  linkedin?: string;
   email: string;
   twitter?: string;
 }
 
+export type SkillCategory = 
+  | 'Cloud'
+  | 'Containers & Orchestration'
+  | 'CI/CD & GitOps'
+  | 'Infrastructure as Code'
+  | 'Security'
+  | 'Operating Systems'
+  | 'Programming & Scripting';
+
 export interface SkillItem {
   name: string;
-  category: 'Cloud' | 'DevOps' | 'Operating Systems' | 'Programming' | 'Monitoring' | 'Version Control';
+  category: SkillCategory;
   iconKey: string;
   tag?: string;
   featured?: boolean;
@@ -45,17 +54,19 @@ export interface ProjectItem {
   description: string;
   technologies: string[];
   image: string;
-  githubUrl?: string;
+  githubUrl: string;
   liveUrl?: string;
+  workflow?: string;
   keyFeatures: string[];
   myContribution: string;
   architectureHighlights?: string[];
+  limitations?: string[];
   featured?: boolean;
 }
 
 export interface EducationItem {
   degree: string;
-  institution: string;
+  institution?: string;
   period: string;
   location?: string;
   relevantCoursework?: string[];
@@ -80,7 +91,7 @@ export interface ResumeConfig {
 
 export interface ContactInfo {
   email: string;
-  linkedin: string;
+  linkedin?: string;
   github: string;
   location: string;
   availabilityNote: string;

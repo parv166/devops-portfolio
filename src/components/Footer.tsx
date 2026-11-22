@@ -4,7 +4,7 @@ import { portfolioData } from '../data/portfolio';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const { personal, socialLinks } = portfolioData;
+  const { personal, socialLinks, certifications } = portfolioData;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -35,6 +35,9 @@ export const Footer: React.FC = () => {
             <a href="#skills" className="hover:text-cyan-300 transition-colors">Skills</a>
             <a href="#projects" className="hover:text-cyan-300 transition-colors">Projects</a>
             <a href="#education" className="hover:text-cyan-300 transition-colors">Education</a>
+            {certifications && certifications.length > 0 && (
+              <a href="#certifications" className="hover:text-cyan-300 transition-colors">Certifications</a>
+            )}
             <a href="#contact" className="hover:text-cyan-300 transition-colors">Contact</a>
           </div>
 
@@ -85,11 +88,9 @@ export const Footer: React.FC = () => {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
           <p>© {currentYear} {personal.name}. All rights reserved.</p>
           <p className="flex items-center gap-2">
-            <span>Production Ready</span>
+            <span>DevOps &amp; Cloud Engineering</span>
             <span>•</span>
-            <span className="text-zinc-400">Azure Static Web Apps</span>
-            <span>•</span>
-            <span>IaC &amp; CI/CD Optimized</span>
+            <span className="text-zinc-400">Kubernetes • GitOps • Serverless</span>
           </p>
         </div>
       </div>

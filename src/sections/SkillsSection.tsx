@@ -3,12 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Cloud, 
   Terminal, 
-  Activity, 
   Code2, 
   Server, 
   GitBranch, 
   Layers,
-  Check
+  Check,
+  Shield,
+  FileCode
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 import { SectionHeading } from '../components/SectionHeading';
@@ -17,26 +18,27 @@ import { TechIcon } from '../components/TechIcon';
 const categoryIcons: Record<string, React.ReactNode> = {
   All: <Layers size={14} />,
   Cloud: <Cloud size={14} />,
-  DevOps: <Server size={14} />,
+  'Containers & Orchestration': <Server size={14} />,
+  'CI/CD & GitOps': <GitBranch size={14} />,
+  'Infrastructure as Code': <FileCode size={14} />,
+  Security: <Shield size={14} />,
   'Operating Systems': <Terminal size={14} />,
-  Programming: <Code2 size={14} />,
-  Monitoring: <Activity size={14} />,
-  'Version Control': <GitBranch size={14} />,
+  'Programming & Scripting': <Code2 size={14} />,
 };
 
 export const SkillsSection: React.FC = () => {
   const { skills } = portfolioData;
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-  // Categories list
   const categories = [
     'All',
     'Cloud',
-    'DevOps',
+    'Containers & Orchestration',
+    'CI/CD & GitOps',
+    'Infrastructure as Code',
+    'Security',
     'Operating Systems',
-    'Programming',
-    'Monitoring',
-    'Version Control',
+    'Programming & Scripting',
   ];
 
   const filteredSkills = selectedCategory === 'All'
@@ -52,7 +54,7 @@ export const SkillsSection: React.FC = () => {
         <SectionHeading
           badge="Tooling &amp; Infrastructure"
           title="Technical Skills"
-          subtitle="Core competencies, platforms, and orchestration tooling I work with to build reliable infrastructure."
+          subtitle="Core competencies, platforms, and automation tooling verified across hands-on repositories and homelab builds."
         />
 
         {/* Category Filter Pills */}
@@ -102,7 +104,7 @@ export const SkillsSection: React.FC = () => {
                     <div className="w-11 h-11 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-center justify-center p-2.5 group-hover:border-cyan-500/40 transition-colors shadow-inner">
                       <TechIcon name={skill.iconKey} size={22} />
                     </div>
-                    <span className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-400">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-400">
                       {skill.category}
                     </span>
                   </div>
@@ -121,10 +123,10 @@ export const SkillsSection: React.FC = () => {
                 <div className="mt-4 pt-3 border-t border-zinc-800/60 flex items-center justify-between text-[11px] font-mono text-zinc-500">
                   <span className="flex items-center gap-1 text-emerald-400/90">
                     <Check size={12} />
-                    <span>Configured &amp; Tested</span>
+                    <span>Hands-On Verified</span>
                   </span>
                   {skill.featured && (
-                    <span className="text-cyan-400/80">Primary</span>
+                    <span className="text-cyan-400/80 font-medium">Core Stack</span>
                   )}
                 </div>
               </motion.div>
@@ -134,7 +136,7 @@ export const SkillsSection: React.FC = () => {
 
         {/* DevOps Standards Guarantee Note */}
         <div className="mt-12 p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/80 max-w-2xl mx-auto text-center text-xs text-zinc-400 font-mono">
-          <span className="text-cyan-400"># Engineering Note:</span> Evaluated through practical build labs, infrastructure declarations, and container orchestration rather than arbitrary percentages.
+          <span className="text-cyan-400"># Engineering Note:</span> Built from genuine lab implementations, container manifests, and pipeline scripts rather than arbitrary proficiency percentages.
         </div>
       </div>
     </section>

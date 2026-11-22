@@ -3,29 +3,31 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, FileDown, Terminal } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 
-const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Education', href: '#education' },
-  { label: 'Certifications', href: '#certifications' },
-  { label: 'Contact', href: '#contact' },
-];
-
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
-  const { personal, resume } = portfolioData;
+  const { personal, resume, certifications } = portfolioData;
+
+  const baseNavItems = [
+    { label: 'Home', href: '#home' },
+    { label: 'About', href: '#about' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Education', href: '#education' },
+    ...(certifications && certifications.length > 0
+      ? [{ label: 'Certifications', href: '#certifications' }]
+      : []),
+    { label: 'Contact', href: '#contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Simple active section detection
-      const sections = navItems.map((item) => item.href.substring(1));
+      // Active section detection
+      const sections = baseNavItems.map((item) => item.href.substring(1));
       const scrollPosition = window.scrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -39,7 +41,7 @@ export const Navbar: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [baseNavItems]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -81,7 +83,7 @@ export const Navbar: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1 bg-[#10131e]/70 p-1.5 rounded-full border border-zinc-800/80 backdrop-blur-md">
-            {navItems.map((item) => {
+            {baseNavItems.map((item) => {
               const isActive = activeSection === item.href.substring(1);
               return (
                 <a
@@ -151,7 +153,7 @@ export const Navbar: React.FC = () => {
             className="lg:hidden bg-[#0c0f18]/95 border-b border-zinc-800 px-4 pt-3 pb-6 backdrop-blur-xl"
           >
             <div className="flex flex-col space-y-2 mb-4">
-              {navItems.map((item) => {
+              {baseNavItems.map((item) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (
                   <a
