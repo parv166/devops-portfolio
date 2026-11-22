@@ -49,7 +49,7 @@ export const ProjectsSection: React.FC = () => {
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-auto rounded-xl shadow-2xl border border-zinc-800/60 group-hover:scale-[1.02] transition-transform duration-500 object-cover"
+                        className="w-full h-auto rounded-xl shadow-2xl border border-zinc-800/60 group-hover:scale-[1.02] transition-transform duration-500 object-contain"
                         loading="lazy"
                       />
                     </div>

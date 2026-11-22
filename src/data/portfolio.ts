@@ -61,8 +61,8 @@ export const portfolioData: PortfolioData = {
   // 3. Social & Professional Links
   socialLinks: {
     github: "https://github.com/parv166",
+    linkedin: "https://www.linkedin.com/in/parv-chandegara/",
     email: "chandegaraparv@gmail.com",
-    // LinkedIn and Twitter left empty per verified data guidelines (buttons cleanly hidden)
   },
 
   // 4. Technical Skills
@@ -118,7 +118,7 @@ export const portfolioData: PortfolioData = {
       tagline: "Hands-on Homelab: Developer Push to Automated GitOps Deployment",
       description: "A practical learning homelab demonstrating an automated delivery pipeline and GitOps workflow. When a developer pushes code, GitHub Actions validates Helm charts, builds and health-tests the container image, runs a Trivy vulnerability gate, and publishes to GHCR. It then updates the Helm values file, allowing Argo CD to detect the commit and reconcile the 2-replica deployment into a physical two-node K3s cluster.",
       technologies: ["K3s", "Kubernetes", "Argo CD", "GitHub Actions", "Docker", "Helm", "Traefik", "Trivy", "GHCR", "Python Flask"],
-      image: "/images/projects/hello-devops.svg",
+      image: "/images/projects/hello-devops-homelab.png",
       githubUrl: "https://github.com/parv166/hello-devops",
       liveUrl: "",
       workflow: "Developer Push → GitHub Actions → Helm Lint → Docker Build & Health Check → Trivy Scan → GHCR Publish → Update Helm Image SHA → Argo CD Sync → K3s Two-Node Cluster",
@@ -246,6 +246,7 @@ export const portfolioData: PortfolioData = {
   // 9. Contact Information
   contact: {
     email: "chandegaraparv@gmail.com",
+    linkedin: "https://www.linkedin.com/in/parv-chandegara/",
     github: "https://github.com/parv166",
     location: "India (Open to Remote Opportunities)",
     availabilityNote: "Currently seeking entry-level DevOps Engineer, Cloud Engineer, or SRE roles and internships. Feel free to connect regarding cloud automation, CI/CD pipelines, or homelab projects.",
