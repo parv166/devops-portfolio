@@ -9,7 +9,8 @@ import {
   Layers,
   Check,
   Shield,
-  FileCode
+  FileCode,
+  Network
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 import { SectionHeading } from '../components/SectionHeading';
@@ -17,13 +18,15 @@ import { TechIcon } from '../components/TechIcon';
 
 const categoryIcons: Record<string, React.ReactNode> = {
   All: <Layers size={14} />,
-  Cloud: <Cloud size={14} />,
-  'Containers & Orchestration': <Server size={14} />,
-  'CI/CD & GitOps': <GitBranch size={14} />,
+  'Cloud Platforms': <Cloud size={14} />,
+  Containerization: <Server size={14} />,
+  'CI/CD Tools & GitOps': <GitBranch size={14} />,
+  'Operating Systems': <Terminal size={14} />,
+  Networking: <Network size={14} />,
+  'Scripting Languages': <Code2 size={14} />,
+  'Version Control': <GitBranch size={14} />,
   'Infrastructure as Code': <FileCode size={14} />,
   Security: <Shield size={14} />,
-  'Operating Systems': <Terminal size={14} />,
-  'Programming & Scripting': <Code2 size={14} />,
 };
 
 export const SkillsSection: React.FC = () => {
@@ -32,13 +35,15 @@ export const SkillsSection: React.FC = () => {
 
   const categories = [
     'All',
-    'Cloud',
-    'Containers & Orchestration',
-    'CI/CD & GitOps',
+    'Cloud Platforms',
+    'Containerization',
+    'CI/CD Tools & GitOps',
+    'Operating Systems',
+    'Networking',
+    'Scripting Languages',
+    'Version Control',
     'Infrastructure as Code',
     'Security',
-    'Operating Systems',
-    'Programming & Scripting',
   ];
 
   const filteredSkills = selectedCategory === 'All'
@@ -54,7 +59,7 @@ export const SkillsSection: React.FC = () => {
         <SectionHeading
           badge="Tooling &amp; Infrastructure"
           title="Technical Skills"
-          subtitle="Core competencies, platforms, and automation tooling verified across hands-on repositories and homelab builds."
+          subtitle="Core competencies, cloud platforms, and DevOps automation tooling drawn from my resume and practical projects."
         />
 
         {/* Category Filter Pills */}
@@ -101,8 +106,8 @@ export const SkillsSection: React.FC = () => {
               >
                 <div>
                   <div className="flex items-center justify-between mb-3.5">
-                    <div className="w-11 h-11 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-center justify-center p-2.5 group-hover:border-cyan-500/40 transition-colors shadow-inner">
-                      <TechIcon name={skill.iconKey} size={22} />
+                    <div className="w-11 h-11 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-center justify-center p-1.5 group-hover:border-cyan-500/40 transition-colors shadow-inner shrink-0">
+                      <TechIcon name={skill.iconKey} size={28} />
                     </div>
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-400">
                       {skill.category}
@@ -123,7 +128,7 @@ export const SkillsSection: React.FC = () => {
                 <div className="mt-4 pt-3 border-t border-zinc-800/60 flex items-center justify-between text-[11px] font-mono text-zinc-500">
                   <span className="flex items-center gap-1 text-emerald-400/90">
                     <Check size={12} />
-                    <span>Hands-On Verified</span>
+                    <span>Resume &amp; Project Skills</span>
                   </span>
                   {skill.featured && (
                     <span className="text-cyan-400/80 font-medium">Core Stack</span>

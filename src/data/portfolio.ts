@@ -67,47 +67,68 @@ export const portfolioData: PortfolioData = {
 
   // 4. Technical Skills
   skills: [
-    // Cloud
-    { name: "AWS", category: "Cloud", iconKey: "aws", tag: "S3, Lambda, API Gateway, DynamoDB, Cognito, CloudFront, ECR", featured: true },
-    { name: "Amazon Cognito", category: "Cloud", iconKey: "aws", tag: "User Pools, JWT Authentication, Protected Routes", featured: false },
-    { name: "Amazon S3", category: "Cloud", iconKey: "aws", tag: "Private Bucket Storage, Block Public Access", featured: true },
-    { name: "AWS Lambda", category: "Cloud", iconKey: "aws", tag: "Python Serverless Compute, File Handlers", featured: true },
-    { name: "Amazon API Gateway", category: "Cloud", iconKey: "aws", tag: "HTTP APIs, JWT Authorizer Integration", featured: false },
-    { name: "Amazon DynamoDB", category: "Cloud", iconKey: "aws", tag: "NoSQL Metadata Table, Single Table Keying", featured: false },
-    { name: "Amazon CloudFront", category: "Cloud", iconKey: "aws", tag: "CDN Distribution, S3 Static Hosting", featured: false },
-    { name: "Amazon ECR", category: "Cloud", iconKey: "aws", tag: "Container Image Registry, Docker Push", featured: false },
+    // 1. Cloud Platforms
+    { name: "AWS", category: "Cloud Platforms", iconKey: "aws", tag: "EC2, VPC, S3, Security Groups, IAM", featured: true },
+    { name: "Azure Fundamentals", category: "Cloud Platforms", iconKey: "azure", tag: "Core Cloud Concepts, Virtual Machines, Resource Groups", featured: false },
+    { name: "Amazon Cognito", category: "Cloud Platforms", iconKey: "cognito", tag: "User Pools, JWT Authentication, Protected Routes", featured: false },
+    { name: "Amazon S3", category: "Cloud Platforms", iconKey: "s3", tag: "Private Bucket Storage, Block Public Access", featured: true },
+    { name: "AWS Lambda", category: "Cloud Platforms", iconKey: "lambda", tag: "Python Serverless Compute, File Handlers", featured: true },
+    { name: "Amazon API Gateway", category: "Cloud Platforms", iconKey: "apigateway", tag: "HTTP APIs, JWT Authorizer Integration", featured: false },
+    { name: "Amazon DynamoDB", category: "Cloud Platforms", iconKey: "dynamodb", tag: "NoSQL Metadata Table, Single Table Keying", featured: false },
+    { name: "Amazon CloudFront", category: "Cloud Platforms", iconKey: "cloudfront", tag: "CDN Distribution, S3 Static Hosting", featured: false },
+    { name: "Amazon ECR", category: "Cloud Platforms", iconKey: "ecr", tag: "Container Image Registry, Docker Push", featured: false },
 
-    // Containers and Orchestration
-    { name: "Docker", category: "Containers & Orchestration", iconKey: "docker", tag: "Multi-stage Builds, Non-root Users, Healthcheck", featured: true },
-    { name: "Kubernetes", category: "Containers & Orchestration", iconKey: "kubernetes", tag: "Deployments, Services, NodePort, Ingress", featured: true },
-    { name: "K3s", category: "Containers & Orchestration", iconKey: "k3s", tag: "Lightweight Two-Node Homelab Cluster", featured: true },
-    { name: "Helm", category: "Containers & Orchestration", iconKey: "k8s", tag: "Chart Packaging, Value Templating, Linting", featured: true },
-    { name: "Traefik", category: "Containers & Orchestration", iconKey: "k8s", tag: "Kubernetes Ingress Controller, Host Routing", featured: false },
+    // 2. Containerization
+    { name: "Docker", category: "Containerization", iconKey: "docker", tag: "Multi-stage Builds, Non-root Users, Healthcheck", featured: true },
+    { name: "Docker Compose", category: "Containerization", iconKey: "dockercompose", tag: "Multi-Container Applications, Bridge Networks, Volumes", featured: true },
+    { name: "Container Networking", category: "Containerization", iconKey: "containernetworking", tag: "Bridge Drivers, Port Binding, Host Communication & DNS", featured: false },
+    { name: "Container Image Management", category: "Containerization", iconKey: "containerimagemanagement", tag: "Layer Optimization, Image Tagging, Pruning & GHCR/ECR", featured: false },
+    { name: "Kubernetes", category: "Containerization", iconKey: "kubernetes", tag: "Deployments, Services, NodePort, Ingress", featured: true },
+    { name: "K3s", category: "Containerization", iconKey: "k3s", tag: "Lightweight Two-Node Homelab Cluster", featured: true },
+    { name: "Helm", category: "Containerization", iconKey: "helm", tag: "Chart Packaging, Value Templating, Linting", featured: true },
+    { name: "Traefik", category: "Containerization", iconKey: "traefik", tag: "Kubernetes Ingress Controller, Host Routing", featured: false },
 
-    // CI/CD and GitOps
-    { name: "GitHub Actions", category: "CI/CD & GitOps", iconKey: "githubactions", tag: "Workflows, Helm Lint, Docker Build, GHCR Publish", featured: true },
-    { name: "Jenkins", category: "CI/CD & GitOps", iconKey: "jenkins", tag: "Declarative Pipeline, Unit Tests, Container Auditing", featured: true },
-    { name: "Argo CD", category: "CI/CD & GitOps", iconKey: "kubernetes", tag: "Declarative GitOps, Desired State Reconciliation", featured: true },
-    { name: "Git", category: "CI/CD & GitOps", iconKey: "git", tag: "Branching, Version Control, Commit Hashes", featured: true },
-    { name: "GitHub", category: "CI/CD & GitOps", iconKey: "github", tag: "GHCR, Issue Tracking, CI Integration", featured: false },
+    // 3. CI/CD Tools & GitOps
+    { name: "GitHub Actions", category: "CI/CD Tools & GitOps", iconKey: "githubactions", tag: "Workflows, Helm Lint, Docker Build, GHCR Publish", featured: true },
+    { name: "Jenkins", category: "CI/CD Tools & GitOps", iconKey: "jenkins", tag: "Declarative Pipeline, Unit Tests, Container Auditing", featured: true },
+    { name: "Build Automation", category: "CI/CD Tools & GitOps", iconKey: "buildautomation", tag: "CI Pipeline Triggers, Automated Build Runs & Validation", featured: false },
+    { name: "Docker Image Build", category: "CI/CD Tools & GitOps", iconKey: "dockerimagebuild", tag: "Pipeline Container Packaging, Caching & Testing", featured: false },
+    { name: "SSH Deployment", category: "CI/CD Tools & GitOps", iconKey: "sshdeployment", tag: "Automated Remote Key Authentication & Command Execution", featured: false },
+    { name: "Argo CD", category: "CI/CD Tools & GitOps", iconKey: "argocd", tag: "Declarative GitOps, Desired State Reconciliation", featured: true },
+    { name: "Trivy", category: "CI/CD Tools & GitOps", iconKey: "trivy", tag: "Container Vulnerability Scans, CRITICAL Gate", featured: true },
 
-    // Infrastructure as Code
+    // 4. Operating Systems
+    { name: "Ubuntu", category: "Operating Systems", iconKey: "ubuntu", tag: "Server Administration, Homelab OS", featured: true },
+    { name: "Kali Linux", category: "Operating Systems", iconKey: "kalilinux", tag: "Security Auditing, Diagnostic & Penetration Testing Tools", featured: false },
+    { name: "Linux", category: "Operating Systems", iconKey: "linux", tag: "Process Monitoring, Permissions, Networking", featured: true },
+    { name: "SSH", category: "Operating Systems", iconKey: "ssh", tag: "Key-Pair Authentication, Remote Shell & Config", featured: true },
+    { name: "Process Management", category: "Operating Systems", iconKey: "processmanagement", tag: "Systemd Services, background jobs, top/htop & signals", featured: false },
+    { name: "Port Management", category: "Operating Systems", iconKey: "portmanagement", tag: "ss, netstat, lsof, ufw firewalls & port binding inspection", featured: false },
+
+    // 5. Networking
+    { name: "TCP/IP", category: "Networking", iconKey: "tcpip", tag: "Addressing, Subnets, Routing, Handshakes & Protocols", featured: true },
+    { name: "DNS", category: "Networking", iconKey: "dns", tag: "Domain Resolution, Records (A, CNAME, TXT), CoreDNS", featured: true },
+    { name: "HTTP/HTTPS", category: "Networking", iconKey: "https", tag: "Status Codes, Headers, TLS Certificates & Reverse Proxies", featured: false },
+    { name: "VPC", category: "Networking", iconKey: "vpc", tag: "Virtual Private Cloud, Subnets, Route Tables, Gateways", featured: true },
+    { name: "Security Groups", category: "Networking", iconKey: "securitygroups", tag: "Stateful Inbound/Outbound Rules & Network Isolation", featured: false },
+    { name: "Port Scanning", category: "Networking", iconKey: "portscanning", tag: "Nmap, Port Discovery & Service Version Detection", featured: false },
+
+    // 6. Scripting Languages
+    { name: "Python", category: "Scripting Languages", iconKey: "python", tag: "FastAPI, Flask, Pytest, Boto3 AWS SDK", featured: true },
+    { name: "Bash", category: "Scripting Languages", iconKey: "bash", tag: "Shell Automation, Health Checks, CLI Tooling", featured: true },
+
+    // 7. Version Control
+    { name: "Git", category: "Version Control", iconKey: "git", tag: "Branching, Version Control, Commit Hashes", featured: true },
+    { name: "GitHub", category: "Version Control", iconKey: "github", tag: "GHCR, Issue Tracking, CI Integration", featured: true },
+    { name: "Branching Strategies", category: "Version Control", iconKey: "branchingstrategies", tag: "Feature Branching, Mainline Delivery, Trunk-based GitOps", featured: false },
+
+    // 8. Infrastructure as Code
     { name: "Terraform", category: "Infrastructure as Code", iconKey: "terraform", tag: "Declarative Modules, AWS Provider, State Management", featured: true },
 
-    // Security
-    { name: "Trivy", category: "Security", iconKey: "linux", tag: "Container Vulnerability Scans, CRITICAL Gate", featured: true },
-    { name: "Container Security", category: "Security", iconKey: "docker", tag: "Non-root Users, Minimal Base Images, Health Probes", featured: false },
-    { name: "IAM Fundamentals", category: "Security", iconKey: "aws", tag: "Least-privilege Execution Roles, Scoped Policies", featured: false },
-
-    // Operating Systems
-    { name: "Linux", category: "Operating Systems", iconKey: "linux", tag: "Process Monitoring, Permissions, Networking", featured: true },
-    { name: "Ubuntu", category: "Operating Systems", iconKey: "ubuntu", tag: "Server Administration, Homelab OS", featured: false },
-
-    // Programming and Scripting
-    { name: "Python", category: "Programming & Scripting", iconKey: "python", tag: "FastAPI, Flask, Pytest, Boto3 AWS SDK", featured: true },
-    { name: "Bash", category: "Programming & Scripting", iconKey: "bash", tag: "Shell Automation, Health Checks, CLI Tooling", featured: true },
-    { name: "JavaScript", category: "Programming & Scripting", iconKey: "javascript", tag: "React Frontend Integration, Web APIs", featured: false },
-    { name: "TypeScript", category: "Programming & Scripting", iconKey: "typescript", tag: "Type-safe Web Applications & Configurations", featured: false },
+    // 9. Security
+    { name: "IAM Fundamentals", category: "Security", iconKey: "iam", tag: "Least-privilege Execution Roles, Scoped Policies", featured: true },
+    { name: "CI/CD Secrets Management", category: "Security", iconKey: "secretsmanagement", tag: "Encrypted Pipeline Secrets, Environment Injection", featured: true },
+    { name: "Container Security", category: "Security", iconKey: "containersecurity", tag: "Non-root Users, Minimal Base Images, Health Probes", featured: true },
   ],
 
   // 5. Real Projects Section (Hello DevOps featured first!)
@@ -119,6 +140,7 @@ export const portfolioData: PortfolioData = {
       description: "A practical learning homelab demonstrating an automated delivery pipeline and GitOps workflow. When a developer pushes code, GitHub Actions validates Helm charts, builds and health-tests the container image, runs a Trivy vulnerability gate, and publishes to GHCR. It then updates the Helm values file, allowing Argo CD to detect the commit and reconcile the 2-replica deployment into a physical two-node K3s cluster.",
       technologies: ["K3s", "Kubernetes", "Argo CD", "GitHub Actions", "Docker", "Helm", "Traefik", "Trivy", "GHCR", "Python Flask"],
       image: "/images/projects/hello-devops-homelab.png",
+      fallbackImage: "/images/projects/hello-devops.svg",
       githubUrl: "https://github.com/parv166/hello-devops",
       liveUrl: "",
       workflow: "Developer Push → GitHub Actions → Helm Lint → Docker Build & Health Check → Trivy Scan → GHCR Publish → Update Helm Image SHA → Argo CD Sync → K3s Two-Node Cluster",
@@ -155,7 +177,8 @@ export const portfolioData: PortfolioData = {
       tagline: "Serverless File Management with Cognito Auth, Lambda & Terraform",
       description: "A serverless cloud web application for secure, authenticated file storage. Features user registration and email confirmation via Amazon Cognito, protected React frontend routes, JWT-authorized API Gateway HTTP endpoints, Python Lambda handlers with per-user file ownership validation, private Amazon S3 storage, and DynamoDB metadata tracking, all provisioned declaratively with Terraform.",
       technologies: ["AWS Lambda", "Amazon S3", "Amazon Cognito", "Amazon API Gateway", "DynamoDB", "CloudFront", "Terraform", "Python", "React", "Vite"],
-      image: "/images/projects/cloudvault.svg",
+      image: "/images/projects/cloudvault-dashboard.png",
+      fallbackImage: "/images/projects/cloudvault.svg",
       githubUrl: "https://github.com/parv166/CloudVault-AWS-Serverless",
       liveUrl: "",
       workflow: "React Client → Cognito Auth → API Gateway (JWT) → Lambda (Python) → Private S3 Bucket & DynamoDB Metadata",
@@ -185,7 +208,8 @@ export const portfolioData: PortfolioData = {
       tagline: "Containerized FastAPI Service with Automated Unit Testing & Trivy Auditing",
       description: "A containerized Python FastAPI microservice integrated with a declarative Jenkins CI/CD pipeline. Features health and demo endpoints, automated Pytest test execution, a multi-stage Dockerfile running as a dedicated non-root user, Trivy security scanning with JSON report generation, a CRITICAL vulnerability quality gate, and documented pipeline stages for Amazon ECR publishing and EC2 deployment.",
       technologies: ["Jenkins", "Docker", "FastAPI", "Python", "Trivy", "Pytest", "Amazon ECR", "Amazon EC2"],
-      image: "/images/projects/pulsecheck.svg",
+      image: "/images/projects/pulsecheck.png",
+      fallbackImage: "/images/projects/pulsecheck.svg",
       githubUrl: "https://github.com/parv166/pulsecheck",
       liveUrl: "",
       workflow: "Git Commit → Jenkinsfile Pipeline → Pytest Unit Tests → Docker Build (Non-root) → Trivy Vulnerability Gate → ECR / EC2 Stage",

@@ -31,13 +31,15 @@ export interface SocialLinks {
 }
 
 export type SkillCategory = 
-  | 'Cloud'
-  | 'Containers & Orchestration'
-  | 'CI/CD & GitOps'
-  | 'Infrastructure as Code'
-  | 'Security'
+  | 'Cloud Platforms'
+  | 'Containerization'
+  | 'CI/CD Tools & GitOps'
   | 'Operating Systems'
-  | 'Programming & Scripting';
+  | 'Networking'
+  | 'Scripting Languages'
+  | 'Version Control'
+  | 'Infrastructure as Code'
+  | 'Security';
 
 export interface SkillItem {
   name: string;
@@ -54,6 +56,7 @@ export interface ProjectItem {
   description: string;
   technologies: string[];
   image: string;
+  fallbackImage?: string;
   githubUrl: string;
   liveUrl?: string;
   workflow?: string;

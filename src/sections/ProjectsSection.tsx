@@ -49,6 +49,12 @@ export const ProjectsSection: React.FC = () => {
                       <img
                         src={project.image}
                         alt={project.title}
+                        onError={(e) => {
+                          if (project.fallbackImage && e.currentTarget.getAttribute('data-fallback-attempted') !== 'true') {
+                            e.currentTarget.setAttribute('data-fallback-attempted', 'true');
+                            e.currentTarget.src = project.fallbackImage;
+                          }
+                        }}
                         className="w-full h-auto rounded-xl shadow-2xl border border-zinc-800/60 group-hover:scale-[1.02] transition-transform duration-500 object-contain"
                         loading="lazy"
                       />

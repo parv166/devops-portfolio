@@ -1,8 +1,39 @@
 import React from 'react';
-import { 
-  Terminal, 
+import {
+  siAmazonaws,
+  siMicrosoftazure,
+  siDocker,
+  siKalilinux,
+  siUbuntu,
+  siGnubash,
+  siPython,
+  siGit,
+  siGithub,
+  siTerraform,
+  siJenkins,
+  siKubernetes,
+  siHelm,
+  siArgo,
+  siTrivy,
+  siLinux,
+  siTraefikproxy,
+  type SimpleIcon,
+} from 'simple-icons';
+import {
+  Network,
+  Shield,
+  Layers,
+  Activity,
+  Server,
+  Lock,
+  Globe,
+  Radio,
+  GitBranch,
   Cpu,
-  Shield
+  Boxes,
+  Database,
+  KeyRound,
+  Cloud,
 } from 'lucide-react';
 
 interface TechIconProps {
@@ -11,149 +42,259 @@ interface TechIconProps {
   size?: number;
 }
 
-export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-5 h-5", size = 20 }) => {
+export const TechIcon: React.FC<TechIconProps> = ({ name, className = '', size = 28 }) => {
   const normalized = name.toLowerCase().replace(/[^a-z0-9]/g, '');
 
+  const renderSimpleIcon = (icon: SimpleIcon, color?: string, label?: string) => (
+    <svg
+      role="img"
+      aria-label={label || icon.title}
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill={color || `#${icon.hex}`}
+      className={`${className} shrink-0`}
+      style={{ width: `${size}px`, height: `${size}px` }}
+    >
+      <path d={icon.path} />
+    </svg>
+  );
+
   switch (normalized) {
+    // 1. Cloud & AWS
     case 'aws':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
-          <path d="M18.5 13.8C17.5 14.8 15.5 15.8 12.8 15.8C8.8 15.8 5.6 13.5 4 10.7C3.7 10.2 4.2 9.6 4.7 9.9C7.2 11.4 9.9 12.3 12.8 12.3C14.7 12.3 16.7 11.8 18.2 11C18.8 10.7 19.3 11.3 18.9 11.8C18.8 12 18.7 12.2 18.5 12.4" stroke="#FF9900" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M19.2 13.8L21 12.2M19.2 13.8L18.8 11.5" stroke="#FF9900" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M7 6.5L8.5 11M8.5 11L10 6.5M8.5 11V14" stroke="#FF9900" strokeWidth="1.8" strokeLinecap="round"/>
-        </svg>
-      );
+    case 'amazonaws':
+      // Official AWS brand orange for dark UI contrast
+      return renderSimpleIcon(siAmazonaws, '#FF9900', 'Amazon Web Services');
 
     case 'azure':
     case 'microsoftazure':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-          <path fill="#0089D6" d="M13.05 4.24l-5.6 10.42 4.97 4.73 7.82-14.07a.64.64 0 00-.57-.93h-6.07a.65.65 0 00-.55.35v.01z" />
-          <path fill="#0072C6" d="M4.22 18.17a.66.66 0 00.58.44h8.34l-3.23-5.26-5.69 4.82z" />
-        </svg>
-      );
+    case 'azurefundamentals':
+      // Official Microsoft Azure Blue
+      return renderSimpleIcon(siMicrosoftazure, '#0078D4', 'Microsoft Azure');
 
+    case 'cognito':
+    case 'amazoncognito':
+      return <Lock className={`${className} text-amber-400 shrink-0`} size={size} strokeWidth={1.75} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 's3':
+    case 'amazons3':
+    case 'dynamodb':
+    case 'amazondynamodb':
+      return <Database className={`${className} text-amber-400 shrink-0`} size={size} strokeWidth={1.75} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'lambda':
+    case 'awslambda':
+      return <Cpu className={`${className} text-orange-400 shrink-0`} size={size} strokeWidth={1.75} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'apigateway':
+    case 'amazonapigateway':
+      return <Network className={`${className} text-rose-400 shrink-0`} size={size} strokeWidth={1.75} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'cloudfront':
+    case 'amazoncloudfront':
+      return <Globe className={`${className} text-violet-400 shrink-0`} size={size} strokeWidth={1.75} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'ecr':
+    case 'amazonecr':
+      return <Boxes className={`${className} text-orange-400 shrink-0`} size={size} strokeWidth={1.75} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    // 2. Containerization
     case 'docker':
+      return renderSimpleIcon(siDocker, '#2496ED', 'Docker');
+
+    case 'dockercompose':
+    case 'compose':
       return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
-          <rect x="5" y="10" width="2" height="2" fill="#0db7ed" rx="0.5"/>
-          <rect x="8" y="10" width="2" height="2" fill="#0db7ed" rx="0.5"/>
-          <rect x="11" y="10" width="2" height="2" fill="#0db7ed" rx="0.5"/>
-          <rect x="8" y="7" width="2" height="2" fill="#0db7ed" rx="0.5"/>
-          <rect x="11" y="7" width="2" height="2" fill="#0db7ed" rx="0.5"/>
-          <rect x="14" y="10" width="2" height="2" fill="#0db7ed" rx="0.5"/>
-          <path d="M22 11.5C21.8 11.5 21.6 11.5 21.5 11.6C21.1 10.6 20.2 9.8 19 9.8C18.9 9.8 18.7 9.8 18.6 9.8C18.1 9 17.2 8.5 16.2 8.5V11H3.5C2.7 11 2 11.7 2 12.5C2 16.5 5 19 10 19C15.8 19 19.5 16.2 20.8 13.2C21.8 13.1 22.5 12.4 22 11.5Z" stroke="#0db7ed" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <svg
+          role="img"
+          aria-label="Docker Compose"
+          viewBox="0 0 24 24"
+          width={size}
+          height={size}
+          fill="none"
+          stroke="#2496ED"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`${className} shrink-0`}
+          style={{ width: `${size}px`, height: `${size}px` }}
+        >
+          <rect x="3" y="3" width="18" height="5" rx="1.5" fill="#2496ED" fillOpacity="0.25" />
+          <rect x="3" y="9.5" width="18" height="5" rx="1.5" fill="#2496ED" fillOpacity="0.4" />
+          <rect x="3" y="16" width="18" height="5" rx="1.5" fill="#2496ED" fillOpacity="0.65" />
+          <circle cx="6.5" cy="5.5" r="0.75" fill="#FFF" />
+          <circle cx="9.5" cy="5.5" r="0.75" fill="#FFF" />
+          <circle cx="6.5" cy="12" r="0.75" fill="#FFF" />
+          <circle cx="9.5" cy="12" r="0.75" fill="#FFF" />
+          <circle cx="6.5" cy="18.5" r="0.75" fill="#FFF" />
+          <circle cx="9.5" cy="18.5" r="0.75" fill="#FFF" />
         </svg>
       );
 
     case 'kubernetes':
     case 'k8s':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
-          <path d="M12 2L3.5 7V17L12 22L20.5 17V7L12 2Z" stroke="#326CE5" strokeWidth="1.8" strokeLinejoin="round"/>
-          <circle cx="12" cy="12" r="3" stroke="#326CE5" strokeWidth="1.5"/>
-          <line x1="12" y1="5" x2="12" y2="9" stroke="#326CE5" strokeWidth="1.5"/>
-          <line x1="12" y1="15" x2="12" y2="19" stroke="#326CE5" strokeWidth="1.5"/>
-          <line x1="6" y1="8.5" x2="9.5" y2="10.5" stroke="#326CE5" strokeWidth="1.5"/>
-          <line x1="14.5" y1="13.5" x2="18" y2="15.5" stroke="#326CE5" strokeWidth="1.5"/>
-          <line x1="6" y1="15.5" x2="9.5" y2="13.5" stroke="#326CE5" strokeWidth="1.5"/>
-          <line x1="14.5" y1="10.5" x2="18" y2="8.5" stroke="#326CE5" strokeWidth="1.5"/>
-        </svg>
-      );
+      return renderSimpleIcon(siKubernetes, '#326CE5', 'Kubernetes');
 
     case 'k3s':
       return (
-        <div className={`${className} bg-amber-500/20 text-amber-300 font-bold text-[10px] flex items-center justify-center rounded border border-amber-500/40 font-mono`} style={{ width: size, height: size }}>
+        <div
+          className={`${className} bg-amber-500/15 text-amber-300 font-bold flex items-center justify-center rounded-lg border border-amber-500/40 font-mono text-[11px] shrink-0`}
+          style={{ width: `${size}px`, height: `${size}px` }}
+        >
           K3s
         </div>
       );
 
     case 'helm':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="#0F1689" strokeWidth="2"/>
-          <path d="M12 6L15 12L12 18L9 12Z" stroke="#0F1689" strokeWidth="1.5" fill="#326CE5"/>
-        </svg>
-      );
+      return renderSimpleIcon(siHelm, '#326CE5', 'Helm');
 
     case 'traefik':
-      return (
-        <div className={`${className} bg-cyan-500/20 text-cyan-300 font-bold text-[10px] flex items-center justify-center rounded border border-cyan-500/40 font-mono`} style={{ width: size, height: size }}>
-          Trf
-        </div>
-      );
+      return renderSimpleIcon(siTraefikproxy, '#24A1C1', 'Traefik');
 
-    case 'terraform':
+    case 'containernetworking':
+    case 'network':
+    case 'networking':
+    case 'tcpip':
+      return <Network className={`${className} text-cyan-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'containerimagemanagement':
+    case 'dockerimagebuild':
+    case 'dockerbuild':
+      return <Boxes className={`${className} text-sky-400 shrink-0`} size={size} strokeWidth={1.75} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    // 3. CI/CD & GitOps
+    case 'githubactions':
       return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-          <path fill="#844FBA" d="M1.5 2.5l7 4.04v8.08l-7-4.04V2.5zm7.8 4.5l7-4.04v8.08l-7 4.04V7zm7-4.04l6.2 3.58v8.08l-6.2-3.58V3.46zM9.3 15.62l7-4.04v8.08l-7 4.04v-8.08z" />
+        <svg
+          role="img"
+          aria-label="GitHub Actions"
+          viewBox="0 0 24 24"
+          width={size}
+          height={size}
+          fill="none"
+          className={`${className} shrink-0`}
+          style={{ width: `${size}px`, height: `${size}px` }}
+        >
+          <circle cx="12" cy="12" r="9.5" stroke="#2088FF" strokeWidth="1.8" />
+          <path d="M7.5 12.5L10.5 15.5L16.5 9.5" stroke="#2088FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       );
 
     case 'jenkins':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="#D33833" strokeWidth="1.8"/>
-          <path d="M8 12C8 9.8 9.8 8 12 8C14.2 8 16 9.8 16 12C16 14.2 14.2 16 12 16" stroke="#D33833" strokeWidth="1.5"/>
-          <circle cx="12" cy="12" r="1.5" fill="#D33833"/>
-        </svg>
-      );
+      return renderSimpleIcon(siJenkins, '#D24939', 'Jenkins');
 
-    case 'githubactions':
+    case 'buildautomation':
+      return <Layers className={`${className} text-cyan-400 shrink-0`} size={size} strokeWidth={1.75} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'sshdeployment':
+    case 'ssh':
       return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="#2088FF" strokeWidth="1.8"/>
-          <path d="M8 12L11 15L16 9" stroke="#2088FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <svg
+          role="img"
+          aria-label="SSH"
+          viewBox="0 0 24 24"
+          width={size}
+          height={size}
+          fill="none"
+          stroke="#38BDF8"
+          strokeWidth="1.75"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`${className} shrink-0`}
+          style={{ width: `${size}px`, height: `${size}px` }}
+        >
+          <rect x="2.5" y="3.5" width="19" height="17" rx="3" stroke="#38BDF8" strokeWidth="1.5" />
+          <line x1="2.5" y1="8.5" x2="21.5" y2="8.5" stroke="#38BDF8" strokeWidth="1.2" opacity="0.5" />
+          <path d="M5.5 13l2 2-2 2" stroke="#38BDF8" strokeWidth="1.8" />
+          <circle cx="15.5" cy="13.5" r="2.2" stroke="#34D399" strokeWidth="1.6" />
+          <path d="M15.5 15.7v3m0 -1.4h1.8" stroke="#34D399" strokeWidth="1.6" />
         </svg>
       );
 
     case 'argocd':
-      return (
-        <div className={`${className} bg-orange-500/20 text-orange-400 font-bold text-[10px] flex items-center justify-center rounded border border-orange-500/40 font-mono`} style={{ width: size, height: size }}>
-          Argo
-        </div>
-      );
+    case 'argo':
+      return renderSimpleIcon(siArgo, '#EF7B4D', 'Argo CD');
 
     case 'trivy':
-      return <Shield className={`${className} text-rose-400`} size={size} />;
+      return renderSimpleIcon(siTrivy, '#38BDF8', 'Trivy');
+
+    // 4. Operating Systems
+    case 'ubuntu':
+      return renderSimpleIcon(siUbuntu, '#E95420', 'Ubuntu');
+
+    case 'kalilinux':
+    case 'kali':
+      return renderSimpleIcon(siKalilinux, '#557C94', 'Kali Linux');
 
     case 'linux':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-          <path fill="#FCC624" d="M12 2C9.5 2 8 4 8 6.5v4C8 12.5 7 14 5 15.5c-1 0.7-1 2 0.5 2.5 3 1 6 1 6.5 2 0.5-1 3.5-1 6.5-2 1.5-0.5 1.5-1.8 0.5-2.5-2-1.5-3-3-3-5V6.5C16 4 14.5 2 12 2z"/>
-          <circle cx="10" cy="6" r="1" fill="#000"/>
-          <circle cx="14" cy="6" r="1" fill="#000"/>
-          <ellipse cx="12" cy="8.5" rx="1.5" ry="1" fill="#FFA500"/>
-        </svg>
-      );
+      return renderSimpleIcon(siLinux, '#FCC624', 'Linux');
 
-    case 'ubuntu':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="#E95420" strokeWidth="1.8"/>
-          <circle cx="12" cy="4" r="2" fill="#E95420"/>
-          <circle cx="5" cy="16" r="2" fill="#E95420"/>
-          <circle cx="19" cy="16" r="2" fill="#E95420"/>
-        </svg>
-      );
+    case 'processmanagement':
+      return <Activity className={`${className} text-emerald-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
 
+    case 'portmanagement':
+      return <Server className={`${className} text-cyan-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    // 5. Networking
+    case 'dns':
+      return <Globe className={`${className} text-cyan-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'http':
+    case 'https':
+    case 'httphttps':
+      return <Globe className={`${className} text-emerald-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'vpc':
+      return <Cloud className={`${className} text-sky-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'securitygroups':
+      return <Shield className={`${className} text-emerald-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'portscanning':
+      return <Radio className={`${className} text-rose-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    // 6. Scripting Languages
     case 'python':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
-          <path d="M11.9 2C8.5 2 8.7 3.5 8.7 3.5V5H12V5.5H5.8C5.8 5.5 2 5.1 2 9.5C2 13.9 5.3 13.7 5.3 13.7H7.3V12.2C7.3 10.5 8.8 10.5 8.8 10.5H12C13.5 10.5 13.5 9 13.5 9V3.5C13.5 3.5 13.8 2 11.9 2Z" fill="#3776AB"/>
-          <circle cx="7" cy="4" r="0.8" fill="#FFF"/>
-          <path d="M12.1 22C15.5 22 15.3 20.5 15.3 20.5V19H12V18.5H18.2C18.2 18.5 22 18.9 22 14.5C22 10.1 18.7 10.3 18.7 10.3H16.7V11.8C16.7 13.5 15.2 13.5 15.2 13.5H12C10.5 13.5 10.5 15 10.5 15V20.5C10.5 20.5 10.2 22 12.1 22Z" fill="#FFD43B"/>
-          <circle cx="17" cy="20" r="0.8" fill="#FFF"/>
-        </svg>
-      );
+      return renderSimpleIcon(siPython, '#3776AB', 'Python');
 
     case 'bash':
-      return <Terminal className={`${className} text-emerald-400`} size={size} />;
+      return renderSimpleIcon(siGnubash, '#4EAA25', 'Bash');
 
+    // 7. Version Control
+    case 'git':
+      return renderSimpleIcon(siGit, '#F05032', 'Git');
+
+    case 'github':
+      return renderSimpleIcon(siGithub, '#FFFFFF', 'GitHub');
+
+    case 'branchingstrategies':
+      return <GitBranch className={`${className} text-orange-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    // 8. Infrastructure as Code
+    case 'terraform':
+      return renderSimpleIcon(siTerraform, '#844FBA', 'Terraform');
+
+    // 9. Security
+    case 'iam':
+    case 'iamfundamentals':
+      return <KeyRound className={`${className} text-amber-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'cicdsecretsmanagement':
+    case 'secretsmanagement':
+      return <Lock className={`${className} text-emerald-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    case 'containersecurity':
+      return <Shield className={`${className} text-rose-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
+
+    // Additional Web & Language tags if needed
     case 'javascript':
     case 'js':
       return (
-        <div className={`${className} bg-amber-400 text-black font-bold text-[10px] flex items-center justify-center rounded font-mono`} style={{ width: size, height: size }}>
+        <div
+          className={`${className} bg-amber-400 text-black font-bold text-[11px] flex items-center justify-center rounded-lg font-mono shrink-0`}
+          style={{ width: `${size}px`, height: `${size}px` }}
+        >
           JS
         </div>
       );
@@ -161,31 +302,15 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-5 h-5",
     case 'typescript':
     case 'ts':
       return (
-        <div className={`${className} bg-blue-600 text-white font-bold text-[10px] flex items-center justify-center rounded font-mono`} style={{ width: size, height: size }}>
+        <div
+          className={`${className} bg-blue-600 text-white font-bold text-[11px] flex items-center justify-center rounded-lg font-mono shrink-0`}
+          style={{ width: `${size}px`, height: `${size}px` }}
+        >
           TS
         </div>
       );
 
-    case 'git':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none">
-          <rect x="2" y="2" width="20" height="20" rx="4" transform="rotate(45 12 12)" stroke="#F05032" strokeWidth="1.6"/>
-          <circle cx="12" cy="8" r="1.8" fill="#F05032"/>
-          <circle cx="12" cy="16" r="1.8" fill="#F05032"/>
-          <circle cx="16" cy="12" r="1.8" fill="#F05032"/>
-          <line x1="12" y1="8" x2="12" y2="16" stroke="#F05032" strokeWidth="1.5"/>
-          <path d="M12 12L16 12" stroke="#F05032" strokeWidth="1.5"/>
-        </svg>
-      );
-
-    case 'github':
-      return (
-        <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-          <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-        </svg>
-      );
-
     default:
-      return <Cpu className={`${className} text-cyan-400`} size={size} />;
+      return <Cpu className={`${className} text-cyan-400 shrink-0`} size={size} strokeWidth={1.8} style={{ width: `${size}px`, height: `${size}px` }} />;
   }
 };
