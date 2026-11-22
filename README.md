@@ -2,6 +2,8 @@
 
 A modern, high-performance developer portfolio website engineered for **Parv Chandegara**, an Aspiring DevOps & Cloud Engineer. Built with React, Vite, TypeScript, Tailwind CSS, Framer Motion, and Lucide React. Engineered with deep-space dark aesthetics (Linear, Vercel, and Stripe design inspiration), subtle glow accents, and responsive micro-interactions.
 
+Hosted and deployed via **GitHub Pages** using automated **GitHub Actions** workflows.
+
 ---
 
 ## 🚀 Key Highlights & Verified Projects
@@ -34,7 +36,7 @@ A modern, high-performance developer portfolio website engineered for **Parv Cha
     - Tab 3: `gh run list --repo parv166/hello-devops` (GitHub Actions workflow execution)
   - Explicitly labeled as an illustrative snapshot based on homelab configuration — zero fabricated production metrics.
 - **Zero-Backend Direct Contact**: Interactive message composer and instant one-click email clipboard copy with toast feedback. Opens default email client via `mailto:` with zero server or database requirements.
-- **Azure Static Web Apps CI/CD**: Preconfigured with `staticwebapp.config.json` (SPA routing fallbacks, security headers, MIME types) and `.github/workflows/azure-static-web-apps.yml` with resilient token checking.
+- **GitHub Pages CI/CD**: Preconfigured with `.github/workflows/deploy.yml` utilizing `actions/upload-pages-artifact` and `actions/deploy-pages` with zero secrets required.
 
 ---
 
@@ -44,10 +46,11 @@ A modern, high-performance developer portfolio website engineered for **Parv Cha
 devops-portfolio/
 ├── .github/
 │   └── workflows/
-│       └── azure-static-web-apps.yml   # Automated GitHub Actions build & Azure deployment
+│       └── deploy.yml                  # GitHub Actions workflow for GitHub Pages
 ├── public/
 │   ├── favicon.svg                     # High-res SVG favicon
-│   ├── staticwebapp.config.json        # Azure Static Web Apps routing & security
+│   ├── CNAME                           # Custom domain binding (parvchandegara.me)
+│   ├── 404.html                        # SPA client-side routing fallback
 │   ├── images/
 │   │   ├── og-preview.svg              # 1200x630 OpenGraph social share card
 │   │   └── projects/                   # Verified architectural diagrams
@@ -78,10 +81,9 @@ devops-portfolio/
 │   └── main.tsx                        # React DOM mounting
 ├── index.html                          # SEO metadata, Open Graph tags & Google fonts
 ├── package.json                        # Dependencies & scripts
-├── staticwebapp.config.json            # Azure routing configuration at root
 ├── tailwind.config.js                  # Custom color tokens & fonts
 ├── tsconfig.json                       # Strict TypeScript compiler options
-└── vite.config.ts                      # Vite build configuration (output: dist/)
+└── vite.config.ts                      # Vite build configuration (base: '/', output: dist/)
 ```
 
 ---
@@ -126,51 +128,56 @@ npm.cmd run preview
 
 ---
 
+## 🌐 Custom Domain Migration Guide (`parvchandegara.me`)
+
+The domain `parvchandegara.me` is currently associated with your `parv166.github.io` repository. Because GitHub Pages does not allow a custom domain to be linked to two repositories at the same time, follow these exact manual steps to complete the transfer:
+
+### Step 1: Remove Domain from `parv166.github.io`
+1. Go to **[https://github.com/parv166/parv166.github.io](https://github.com/parv166/parv166.github.io)**.
+2. Click **Settings** (top navigation tab) → **Pages** (left sidebar under "Code and automation").
+3. Under **Custom domain**, click **Remove** (or clear the text field and click **Save**).
+4. Verify the domain text field is now blank on the old repository.
+
+> **Note**: Do not delete or modify your `parv166.github.io` repository itself; removing only the custom domain in Settings leaves all your old repository files completely safe.
+
+### Step 2: Set GitHub Pages Source in `devops-portfolio`
+1. Go to **[https://github.com/parv166/devops-portfolio](https://github.com/parv166/devops-portfolio)**.
+2. Click **Settings** → **Pages**.
+3. Under **Build and deployment > Source**, click the dropdown and select:
+   **GitHub Actions** (instead of "Deploy from a branch").
+
+### Step 3: Attach `parvchandegara.me` to `devops-portfolio`
+1. On the same **Settings → Pages** page of `devops-portfolio`:
+2. In the **Custom domain** input box, enter:
+   ```
+   parvchandegara.me
+   ```
+3. Click **Save**.
+4. GitHub will automatically initiate DNS verification and issue a free Let's Encrypt TLS/SSL certificate.
+5. Once DNS check completes (usually 1–5 minutes), check the box **Enforce HTTPS**.
+
+### Step 4: Namecheap DNS Check
+No DNS changes are needed at Namecheap! Because `parvchandegara.me` was already pointing to GitHub Pages for `parv166.github.io`, your existing DNS records (A records pointing to GitHub Pages IPs `185.199.108.153` ... `185.199.111.153` and CNAME for `www`) are already correct and remain unchanged.
+
+---
+
+## 🚀 GitHub Actions Deployment Pipeline (`.github/workflows/deploy.yml`)
+
+The deployment workflow is fully automated and runs without any cloud credentials or secrets:
+- **Trigger**: Every push to the `main` branch (and manual trigger via `workflow_dispatch`).
+- **Permissions**: Configured with `pages: write` and `id-token: write`.
+- **Pipeline Stages**:
+  1. `npm ci`: Deterministic, clean dependency installation.
+  2. `npm run build`: Type-checks with `tsc -b` and builds with Vite to `dist/`.
+  3. `actions/upload-pages-artifact@v3`: Packages the `dist/` directory (including `CNAME` and `404.html`).
+  4. `actions/deploy-pages@v4`: Deploys directly to the GitHub Pages environment.
+
+---
+
 ## 🛡️ Dependency Audit & Security Status
 
 - Audited via `npm audit`: **0 vulnerabilities**.
-- Updated to **Vite 6** (`^6.4.6`), which resolves vulnerabilities in legacy `esbuild` and Vite dev server path traversal (GHSA-67mh-4wv8-2f99 and GHSA-4w7w-66w2-5vf9) safely without breaking changes or forced overrides.
-
----
-
-## ☁️ Deployment Guide: Azure Static Web Apps
-
-### Step 1: Push Code to GitHub
-```bash
-git add .
-git commit -m "feat: complete verified DevOps portfolio"
-git push origin main
-```
-
-### Step 2: Configure Azure Static Web App
-1. Log in to the [Azure Portal](https://portal.azure.com).
-2. Create a **Static Web App** (Free Plan).
-3. Connect your GitHub repository `parv166/devops-portfolio`, branch `main`.
-4. Set Build Preset to `Custom`:
-   - **App location**: `/`
-   - **Api location**: Leave empty
-   - **Output location**: `dist`
-5. Azure will automatically generate a deployment token.
-6. Add the secret in your GitHub repository:
-   - Go to **Settings > Secrets and variables > Actions > New repository secret**.
-   - Name: `AZURE_STATIC_WEB_APPS_API_TOKEN`
-   - Value: `<your-deployment-token>`
-
-> **Note on CI/CD Resilience**: The workflow `.github/workflows/azure-static-web-apps.yml` validates `npm ci` and `npm run build` on every push. If `AZURE_STATIC_WEB_APPS_API_TOKEN` is not yet configured, the workflow cleanly skips the deployment step with an informational notice while ensuring the build passes.
-
----
-
-## 🌐 Custom Domain Setup (Namecheap + Azure + HTTPS)
-
-1. In the Azure Portal, open your Static Web App and select **Custom domains**.
-2. Click **+ Add > Custom domain on other DNS**.
-3. Enter your domain (e.g. `www.parvchandegara.dev`).
-4. In Namecheap's **Advanced DNS** dashboard, add:
-   - **Type**: `CNAME Record`
-   - **Host**: `www`
-   - **Value**: `<your-app-name>.azurestaticapps.net`
-   - **TTL**: `Automatic`
-5. Azure automatically issues and manages a **free SSL/TLS certificate**.
+- Powered by **Vite 6** (`^6.4.6`), which resolves vulnerabilities in legacy `esbuild` and dev server path traversal (GHSA-67mh-4wv8-2f99 and GHSA-4w7w-66w2-5vf9) safely.
 
 ---
 
