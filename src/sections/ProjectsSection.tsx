@@ -182,7 +182,7 @@ export const ProjectsSection: React.FC = () => {
                           rel="noreferrer"
                           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold text-white bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 transition-all shadow-sm"
                         >
-                          <span>Live Demo</span>
+                          <span>Visit Live Site</span>
                           <ArrowUpRight size={14} />
                         </a>
                       )}
